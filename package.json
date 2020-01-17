@@ -1,0 +1,30 @@
+{
+  "name": "cryptolytics",
+  "version": "1.0.0",
+  "description": "cryptolytics - tool for trading",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/midmihua/cryptolytics.git"
+  },
+  "keywords": [
+    "node.js",
+    "js",
+    "react",
+    "mongodb",
+    "redis",
+    "mocha",
+    "chai",
+    "sinon",
+    "jest"
+  ],
+  "author": "midmihua",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/midmihua/cryptolytics/issues"
+  },
+  "homepage": "https://github.com/midmihua/cryptolytics#readme"
+}
