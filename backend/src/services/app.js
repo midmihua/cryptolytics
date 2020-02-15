@@ -8,8 +8,7 @@ const { JSON_LIMIT } = require('../config');
 module.exports.createApp = (options) => {
 
     const {
-        authRoutes,
-        incorrectRoute,
+        routes,
         logging,
         errorHandling
     } = options;
@@ -40,8 +39,7 @@ module.exports.createApp = (options) => {
     app.use(logging());
 
     // Routes
-    app.use(authRoutes);
-    app.use(incorrectRoute);
+    routes.map(route => app.use(route));
 
     // Error-handling middleware
     app.use(errorHandling);

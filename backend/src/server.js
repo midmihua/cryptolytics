@@ -10,10 +10,15 @@ const { incorrectRoute } = require('./routes/404');
 const { logging } = require('./services/logging');
 const { errorHandling } = require('./middleware/errorHandling');
 
+// Lists of routes
+const routes = [
+    authRoutes,
+    incorrectRoute // should be final in the list
+];
+
 // Init app instance
 const app = createApp({
-    authRoutes,
-    incorrectRoute,
+    routes,
     logging,
     errorHandling
 });
