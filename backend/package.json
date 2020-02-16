@@ -6,7 +6,11 @@
   "scripts": {
     "test": "mocha --recursive --exit --timeout 5000",
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "up": "mkdir -p data && docker-compose up -d",
+    "postup": "npm run dev",
+    "docker-stop": "docker-compose stop",
+    "docker-down": "docker-compose down"
   },
   "repository": {
     "type": "git",
@@ -34,11 +38,15 @@
   },
   "homepage": "https://github.com/midmihua/cryptolytics#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "dotenv-extended": "^2.7.1",
     "express": "^4.17.1",
+    "express-validator": "^6.4.0",
     "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash.size": "^4.2.0",
     "mongoose": "^5.8.13",
     "morgan": "^1.9.1"
   },

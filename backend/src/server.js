@@ -5,7 +5,7 @@ const { createApp } = require('./services/app');
 const { APP_PORT } = require('./config');
 
 // Necessary app options
-const authRoutes = require('./routes/auth');
+const { authRoutes } = require('./routes/auth');
 const { incorrectRoute } = require('./routes/404');
 const { logging } = require('./services/logging');
 const { errorHandling } = require('./middleware/errorHandling');
