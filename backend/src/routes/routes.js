@@ -1,9 +1,10 @@
+const BASE = '/api';
+
 module.exports.AUTH = {
-    BASE: '/api',
     ROUTES: {
-        REGISTER: '/register',
-        LOGIN: '/login',
-        LOGOUT: '/logout',
-        RENEW: '/renew'
+        SIGNUP: `${BASE}/signup`,
+        LOGIN: `${BASE}/login`,
+        LOGOUT: `${BASE}/logout`,
+        ME: `${BASE}/me`
     }
 };

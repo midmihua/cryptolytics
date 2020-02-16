@@ -3,11 +3,9 @@ node_modules
 temp
 dummy*
 build
+data
 *.log
 .env
-
-# React
-semantic
 
 # dependencies
 /node_modules

@@ -1,15 +1,70 @@
-## Cryptolytics > Backend
-
-### TBD
-
+## Cryptolytics :: Backend
 
 > ### [Curl docs](https://curl.haxx.se/docs/httpscripting.html)
 
 ```sh
-curl localhost:3000/api/login
+curl -v -X PUT localhost:3000/api/signup -H 'Content-Type: application/json' \
+    -d '{"email":"test@gmail.com", "username":"test", "password":"secret"}'
 ```
 
 ```sh
-curl -v -X POST localhost:3000/login -H 'Content-Type: application/json' \
-    -d '{"email":"test@gmail.com", "name":"test", "password":"secret", "passwordConfirmation":"secret"}'
+curl -v -X POST localhost:3000/api/login -H 'Content-Type: application/json' \
+    -d '{"email":"test@gmail.com", "password":"secret"}'
+```
+
+```sh
+curl -v localhost:3000/api/me -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoiNWU0OWE0ODllMTU3ZmM3NGRiZWUwMTRiIiwiaWF0IjoxNTgxODkwODU0LCJleHAiOjE1ODE4OTQ0NTR9.ywTU1_S1w6VlnhZI0DDw921QKcbZHOoIY9KWENgjyec'
+```
+
+> ### [Docker docs](https://docs.docker.com/)
+
+- [docker installation guide](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
+- [docker-compose installation guide](https://docs.docker.com/compose/install/)
+
+```sh
+sudo docker exec -it backend_db_1 mongo -u admin -p secret cryptolytics
+```
+
+> ### [Mongo docs](https://docs.mongodb.com/manual/)
+
+```sh
+> db
+test-database
+
+> use test-database
+switched to db test-database
+
+> show collections
+test-collection
+
+> db.test-collection.find().pretty()
+{
+	"_id" : ObjectId("5e49a489e157fc74dbee014b"),
+	"username" : "test",
+	"email" : "test@gmail.com",
+	"password" : "$2a$12$rHDpKlywuTgpAE60Yus8sOkBUQlaocjrGtd4ZxY4gI.9pdMeIn//G",
+	"createdAt" : ISODate("2020-02-16T20:22:33.778Z"),
+	"updatedAt" : ISODate("2020-02-16T20:22:33.778Z"),
+	"__v" : 0
+}
+> 
+```
+
+### Useful commands
+
+#### Kill active process on a port
+
+```sh
+sudo kill -9 $(sudo lsof -t -i:3000)
+```
+
+#### Git
+
+```sh
+git pull --rebase origin develop
+```
+
+```sh
+git push origin branch_name
 ```
