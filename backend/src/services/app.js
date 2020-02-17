@@ -3,8 +3,10 @@ const actuator = require('express-actuator');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
+const swaggerUi = require('swagger-ui-express');
 
 const { JSON_LIMIT } = require('../config');
+const swaggerDoc = require('../utils/swagger/swagger.json');
 
 module.exports.createApp = (options) => {
 
@@ -32,8 +34,8 @@ module.exports.createApp = (options) => {
 
     // Healthcheck information
     app.use(actuator({
-        basePath: '/actuator', // ['/info', '/metrics', '/health']
-        infoGitMode: 'simple'  // ['simple' or 'full']
+        basePath: '/api/actuator', // ['/info', '/metrics', '/health']
+        infoGitMode: 'full'  // ['simple' or 'full']
     }));
 
     // Helmet helps you secure your Express apps by setting various HTTP headers.
@@ -44,6 +46,9 @@ module.exports.createApp = (options) => {
 
     // Requests logging in case of local env
     app.use(logging());
+
+    // Swagger - RESTApi documentation
+    app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
     // Routes
     routes.map(route => app.use(route));
