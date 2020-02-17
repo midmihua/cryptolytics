@@ -9,7 +9,7 @@ curl localhost:3000/actuator/health
 ```
 
 ```sh
-curl -v -X PUT localhost:3000/api/signup -H 'Content-Type: application/json' \
+curl -v -X POST localhost:3000/api/signup -H 'Content-Type: application/json' \
     -d '{"email":"test@gmail.com", "username":"test", "password":"secret"}'
 ```
 
@@ -20,7 +20,7 @@ curl -v -X POST localhost:3000/api/login -H 'Content-Type: application/json' \
 
 ```sh
 curl -v localhost:3000/api/me -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwidXNlcklkIjoiNWU0OWE0ODllMTU3ZmM3NGRiZWUwMTRiIiwiaWF0IjoxNTgxODkwODU0LCJleHAiOjE1ODE4OTQ0NTR9.ywTU1_S1w6VlnhZI0DDw921QKcbZHOoIY9KWENgjyec'
+    -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3R1c2VyMkB0ZXN0LmRiIiwidXNlcklkIjoiNWU0YWIwMTNmYjAzMmI0NzEyOWViMzkzIiwiaWF0IjoxNTgxOTU0MjE2LCJleHAiOjE1ODE5NTc4MTZ9.u7tKe1vddkuPmURmF8Jgr6duX2wkuoCWoPUQMDgj5Ms'
 ```
 
 > ### [Docker docs](https://docs.docker.com/)
