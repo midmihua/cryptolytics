@@ -5,6 +5,7 @@ const router = express.Router();
 const { isAuthenticated } = require('../middleware/isAuthenticated');
 const { validatePut, validatePost } = require('./validation/auth');
 const User = require('../models/user');
+//----------------------------------------------
 
 const { AUTH } = require('./routes');
 const { signup, login, logout, me } = require('../controllers/auth');

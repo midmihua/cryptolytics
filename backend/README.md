@@ -3,6 +3,12 @@
 > ### [Curl docs](https://curl.haxx.se/docs/httpscripting.html)
 
 ```sh
+curl localhost:3000/actuator/info
+curl localhost:3000/actuator/metrics
+curl localhost:3000/actuator/health
+```
+
+```sh
 curl -v -X PUT localhost:3000/api/signup -H 'Content-Type: application/json' \
     -d '{"email":"test@gmail.com", "username":"test", "password":"secret"}'
 ```

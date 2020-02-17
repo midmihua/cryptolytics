@@ -43,6 +43,7 @@
     "compression": "^1.7.4",
     "dotenv-extended": "^2.7.1",
     "express": "^4.17.1",
+    "express-actuator": "^1.4.0",
     "express-validator": "^6.4.0",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",

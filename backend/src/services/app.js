@@ -1,7 +1,8 @@
 const express = require('express');
+const actuator = require('express-actuator');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
 const compression = require('compression');
+const helmet = require('helmet');
 
 const { JSON_LIMIT } = require('../config');
 
@@ -28,6 +29,12 @@ module.exports.createApp = (options) => {
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin, X-Requested-With, Accept');
         next();
     });
+
+    // Healthcheck information
+    app.use(actuator({
+        basePath: '/actuator', // ['/info', '/metrics', '/health']
+        infoGitMode: 'simple'  // ['simple' or 'full']
+    }));
 
     // Helmet helps you secure your Express apps by setting various HTTP headers.
     app.use(helmet());
