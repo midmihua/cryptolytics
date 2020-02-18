@@ -74,10 +74,6 @@ const login = async (req, res, next) => {
     }
 };
 
-const logout = (req, res, next) => {
-    res.send('in process');
-};
-
 const me = async (req, res, next) => {
     try {
         const collection = await User.findById(req.userId);
@@ -99,6 +95,5 @@ const me = async (req, res, next) => {
 module.exports = {
     signup,
     login,
-    logout,
     me
 };

@@ -9,7 +9,7 @@ tags:
 - name: "actuator"
   description: "Healthcheck information"
 - name: "authentication"
-  description: "Endpoints to /signup, /login, /logout, /me"
+  description: "Endpoints to /signup, /login, /me"
 schemes:
 - "http"
 paths:
@@ -93,22 +93,6 @@ paths:
           description: "failed operation: ValidationError"
         500:
           description: "5xx - server errors"
-  /logout:
-    get:
-      tags:
-      - "authentication"
-      description: "This can only be done by the logged in user."
-      produces:
-      - "application/json"
-      parameters:
-      - name: "Authorization"
-        in: "header"
-        description: "Authorization: Bearer TOKEN_ID"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "successful operation"
   /me:
     get:
       tags:
