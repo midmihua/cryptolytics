@@ -14,7 +14,7 @@
         },
         {
             "name": "authentication",
-            "description": "Endpoints to /signup, /login, /logout, /me"
+            "description": "Endpoints to /signup, /login, /me"
         }
     ],
     "schemes": [
@@ -143,31 +143,6 @@
                     },
                     "500": {
                         "description": "5xx - server errors"
-                    }
-                }
-            }
-        },
-        "/logout": {
-            "get": {
-                "tags": [
-                    "authentication"
-                ],
-                "description": "This can only be done by the logged in user.",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Authorization: Bearer TOKEN_ID",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
                     }
                 }
             }

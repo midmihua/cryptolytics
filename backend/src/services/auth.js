@@ -23,18 +23,8 @@ module.exports.authentication = (props) => {
         return jwt.verify(token, JWT_SECRET);
     }
 
-    renewToken = () => {
-        return;
-    }
-
-    destroyToken = () => {
-        return;
-    }
-
     return {
         generateToken,
-        verifyToken,
-        renewToken,
-        destroyToken
+        verifyToken
     }
 };
