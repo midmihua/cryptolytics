@@ -4,15 +4,23 @@ const db = require('./services/db');
 const { createApp } = require('./services/app');
 const { APP_PORT } = require('./config');
 
-// Necessary app options
+// Models
+const User = require('./models/user');
+
+// Routes
 const { authRoutes } = require('./routes/auth');
 const { incorrectRoute } = require('./routes/404');
-const { logging } = require('./services/logging');
+
+// Middlewares
 const { errorHandling } = require('./middleware/errorHandling');
+const { isAuthenticated } = require('./middleware/isAuthenticated');
+
+// Services
+const { logging } = require('./services/logging');
 
 // Lists of routes
 const routes = [
-    authRoutes,
+    authRoutes(User, isAuthenticated),
     incorrectRoute // should be final in the list
 ];
 
