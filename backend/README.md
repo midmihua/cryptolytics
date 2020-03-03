@@ -1,5 +1,102 @@
 ## Cryptolytics :: Backend
 
+> ### How to start backend server on your PC
+
+- Setup and run mongo instance; there are two possible options here:
+
+	**Variant 1**
+
+	- Install mongo to your PC according to official docs ([install link](https://docs.mongodb.com/manual/administration/install-community/))
+	- Verify if `mongod` service is started. For example, there are commands to manage the service status on Ubuntu:
+	```
+	sudo systemctl status mongod
+	sudo systemctl start mongod
+	sudo systemctl restart mongod
+	sudo systemctl stop mongod
+	```  
+	- By default, mongo is listed on port 27017
+	
+	**Variant 2**
+
+	- Install docker & docker-compose on youp PC (links to installation guide can be found below)
+	- Verify if `docker` service is started. For example, there are commands to manage the service status on Ubuntu:
+	```
+	sudo systemctl status docker
+	sudo systemctl start docker
+	sudo systemctl restart docker
+	sudo systemctl stop docker
+	``` 
+	- Later, mongo will be launched in a container
+
+- Clone project to a local folder
+
+	`git clone https://github.com/midmihua/cryptolytics.git`
+
+- Go to `/backend` folder
+
+- Install npm dependencies
+
+	```
+	npm install
+	```
+
+- If **Variant 1** is chosen to setup mongo instance, execute the following steps:
+
+	- Run commands
+
+		```
+		chmod +x mongo-init.sh
+		./mongo-init.sh
+		```
+
+	- Run command
+
+		```
+		npm run dev
+		```
+
+	- As a result, you should see logs in your terminal
+
+		```
+		...
+		Listening on 3000
+		ENV: local
+		MONGO: mongodb://admin:secret@localhost:27017/cryptolytics
+		```
+
+- If **Variant 2** is chosen to setup docker & docker-compose, execute the following steps:
+
+	- Run command
+
+		```
+		npm run up
+		```
+	
+	- As a result, you should see logs in your terminal
+
+		```
+		...
+		Listening on 3000
+		ENV: local
+		MONGO: mongodb://admin:secret@localhost:27017/cryptolytics
+		```
+	
+	- **If** some errors occurred while execution previous step, run manually the commands from the script above
+
+		```
+		mkdir -p data
+		sudo docker-compose up -d
+		```
+	- As a result, you should see logs in your terminal
+
+		```
+		...
+		Listening on 3000
+		ENV: local
+		MONGO: mongodb://admin:secret@localhost:27017/cryptolytics
+		```
+
+
 > ### [Curl docs](https://curl.haxx.se/docs/httpscripting.html)
 
 ```sh
@@ -27,6 +124,8 @@ curl -v localhost:3000/api/me -H 'Content-Type: application/json' \
 
 - [docker installation guide](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 - [docker-compose installation guide](https://docs.docker.com/compose/install/)
+
+- How to connect to a container:
 
 ```sh
 sudo docker exec -it backend_db_1 mongo -u admin -p secret cryptolytics
