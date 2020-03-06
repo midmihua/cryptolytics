@@ -6,8 +6,6 @@ import MainLandingPage from 'pages/landing/MainLandingPage';
 
 import LoginPage from 'pages/authentication/LoginPage';
 import SignupPage from 'pages/authentication/SignupPage';
-import EmailVerificationPage from 'pages/authentication/EmailVerificationPage';
-import PasswordRecoveryPage from 'pages/authentication/PasswordRecoveryPage';
 
 import DashboardPage from 'pages/dashboard/DashboardPage';
 
@@ -19,9 +17,7 @@ export default (
 
       {/* Authentication */}
       <Route path="/login" name="login" component={LoginPage} />
-      <Route path="/signup/email-verification/:key" name="email-verification" component={EmailVerificationPage} />
       <Route path="/signup" name="signup" component={SignupPage} />
-      <Route path="/password-recovery" name="password-recovery" component={PasswordRecoveryPage} />
 
       {/* Dashboard */}
       <Route path="/dashboard" name="dashboard" component={DashboardPage} />

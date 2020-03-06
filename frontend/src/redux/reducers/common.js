@@ -1,14 +1,8 @@
-import restapi from 'utils/restapi';
-
 const initialState = {
   siteLoading: false,
-  countries: null,
-  countriesError: null,
 }
 
 const SITE_LOADING = 'SITE_LOADING';
-const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
-const FETCH_COUNTRIES_ERROR = 'FETCH_COUNTRIES_ERROR';
 
 
 export default (state = initialState, action) => {
@@ -17,18 +11,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         siteLoading: action.payload,
-      };
-    case FETCH_COUNTRIES:
-      return {
-        ...state,
-        countries: action.payload.data,
-        countriesError: null,
-      };
-    case FETCH_COUNTRIES_ERROR:
-      return {
-        ...state,
-        countries: null,
-        countriesError: action.payload.data,
       };
     default:
       return state;
@@ -71,11 +53,3 @@ export const baseErrorsHandlerDecorator = (
       });
   };
 };
-
-
-export const fetchCountries = () => baseErrorsHandlerDecorator(
-  FETCH_COUNTRIES,
-  FETCH_COUNTRIES_ERROR,
-  () => restapi.get('v1/users/countries/'),
-  false,
-);

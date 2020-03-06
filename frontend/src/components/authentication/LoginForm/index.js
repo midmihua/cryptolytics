@@ -90,8 +90,6 @@ class LoginForm extends Component {
 
           <Divider section />
           <Link to="/signup">Signup</Link>
-          <Divider horizontal>Or</Divider>
-          <Link to="/password-recovery">Frogot password?</Link>
         </Segment>
       </div>
     );
