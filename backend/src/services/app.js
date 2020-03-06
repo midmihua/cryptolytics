@@ -48,7 +48,7 @@ module.exports.createApp = (options) => {
     app.use(logging());
 
     // Swagger - RESTApi documentation
-    app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+    app.use('/api/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
     // Routes
     routes.map(route => app.use(route));
