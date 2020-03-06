@@ -1,4 +1,4 @@
-const APP_PORT = process.env.HTTP_PORT || 3000;
+const APP_PORT = process.env.HTTP_PORT || 8000;
 const JSON_LIMIT = '50MB';
 
 module.exports = {
