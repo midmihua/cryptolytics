@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { retrieveToken, clearLoginError } from 'redux/reducers/users';
+import { getCookie } from 'utils/cookies';
 
 import { Redirect, Link } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ class LoginForm extends Component {
     handleSubmit: PropTypes.func.isRequired,
     retrieveToken: PropTypes.func.isRequired,
     clearLoginError: PropTypes.func.isRequired,
-    accessToken: PropTypes.object,
+    accessToken: PropTypes.string,
     loginError: PropTypes.object,
   };
 
@@ -38,7 +39,8 @@ class LoginForm extends Component {
   render() {
     const { accessToken, loginError } = this.props;
 
-    if (accessToken) {
+    // Move logic to Common Page Layout
+    if (accessToken || getCookie('accessToken')) {
       return <Redirect to="/" />;
     }
 

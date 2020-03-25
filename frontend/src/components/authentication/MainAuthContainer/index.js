@@ -13,47 +13,34 @@ class MainAuthContainer extends Component {
   static propTypes = {
     fetchMe: PropTypes.func.isRequired,
     logoutComplete: PropTypes.func.isRequired,
-    children: PropTypes.object.isRequired,
+    children: PropTypes.array.isRequired,
     me: PropTypes.object,
     accessToken: PropTypes.string,
-    refreshToken: PropTypes.string,
   }
 
   static defaultProps = {
     me: null,
     accessToken: null,
-    refreshToken: null,
   }
 
   componentDidMount() {
-
+    if (getCookie('accessToken')) {
+      this.props.fetchMe();
+    }
   }
 
   componentDidUpdate(prevProps) {
+    if (!prevProps.accessToken && this.props.accessToken) {
+      setCookies(this.props.accessToken);
+      this.props.fetchMe();
+    }
 
+    if (!prevProps.loggingOut && this.props.loggingOut) {
+      removeCookie();
+      this.props.logoutComplete();
+      window.location.href = '/';
+    }
   }
-
-  // componentDidMount() {
-  //   const cookieAccessToken = getCookie('accessToken');
-  //   const cookieRefreshToken = getCookie('refreshToken');
-
-  //   if (cookieAccessToken) {
-  //     this.props.fetchMe();
-  //   }
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (!prevProps.accessToken && this.props.accessToken) {
-  //     setCookies(this.props.accessToken, this.props.refreshToken);
-  //     this.props.fetchMe();
-  //   }
-
-  //   if (!prevProps.loggingOut && this.props.loggingOut) {
-  //     removeCookie();
-  //     this.props.logoutComplete();
-  //     window.location.href = '/';
-  //   }
-  // }
 
   render() {
     return (

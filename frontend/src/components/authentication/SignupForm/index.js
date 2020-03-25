@@ -33,6 +33,7 @@ class SignupForm extends Component {
 
   handleSubmit = (values) => {
     this.props.registrateUser(
+      values.username,
       values.email,
       values.password1,
     );
@@ -61,6 +62,16 @@ class SignupForm extends Component {
             onSubmit={this.props.handleSubmit(this.handleSubmit)}
             error={!this.props.valid}
           >
+            {/* Email Address */}
+            <Field
+              label="Username:"
+              component={TextField}
+              name="username"
+              type="text"
+              placeholder="Enter you username"
+              required
+            />
+
             {/* Email Address */}
             <Field
               label="Email Address:"

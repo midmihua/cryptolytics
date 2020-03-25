@@ -22,15 +22,20 @@ class LandingTopMenu extends Component {
 
     return (
       <div className="landing-top-menu__component">
-        {!me &&
-          <Link to="/login">Login </Link>
-        }
-        {!me &&
-          <Link to="/signup">Signup </Link>
-        }
-        {me &&
-          <Link onClick={() => this.props.logout()}>Logout</Link>
-        }
+        <div className="logo">
+          CRYPTOLYTICS
+        </div>
+        <div className="nav-wrapper">
+          {!me &&
+            <Link to="/login">Login</Link>
+          }
+          {!me &&
+            <Link to="/signup">Signup</Link>
+          }
+          {me &&
+            <Link onClick={() => this.props.logout()}>Logout</Link>
+          }
+        </div>
       </div>
     );
   }
