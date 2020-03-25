@@ -51,7 +51,7 @@ export default (state = initialState, action) => {
     case LOGGED_IN:
       return {
         ...state,
-        accessToken: action.payload.data.access_token,
+        accessToken: action.payload.data.token,
         loginError: null,
       };
     case LOGIN_ERROR:
@@ -97,12 +97,12 @@ export default (state = initialState, action) => {
 };
 
 
-export const registrateUser = (email, password, countryId) => baseErrorsHandlerDecorator(
+export const registrateUser = (username, email, password) => baseErrorsHandlerDecorator(
   REGISTRATE_USER_SUCCESS,
   REGISTRATE_USER_ERROR,
   () => restapi.post(
-    'v1/users/register/',
-    { email, password, country_id: countryId },
+    '/signup',
+    { username, email, password },
   ),
 );
 
@@ -116,7 +116,7 @@ export const retrieveToken = (email, password)  => baseErrorsHandlerDecorator(
   LOGGED_IN,
   LOGIN_ERROR,
   () => restapi.post(
-    'v1/users/token/',
+    '/login',
     {
       email,
       password,
@@ -133,7 +133,7 @@ export const clearLoginError = () => (dispatch) => {
 export const fetchMe = () => baseErrorsHandlerDecorator(
   FETCH_ME,
   FETCH_ME_ERROR,
-  () => restapi.get('v1/users/me/'),
+  () => restapi.get('/me'),
 );
 
 export const logout = () => (dispatch) => {

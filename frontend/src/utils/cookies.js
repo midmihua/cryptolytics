@@ -16,13 +16,11 @@ export const getCookie = (cname) => {
   return '';
 };
 
-export const setCookies = (accessToken, refreshToken) => {
+export const setCookies = (accessToken) => {
   document.cookie = `accessToken=${accessToken}; path=/`;
-  document.cookie = `refreshToken=${refreshToken}; path=/`;
   restapi.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 };
 
 export const removeCookie = () => {
   document.cookie = 'accessToken=;expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
-  document.cookie = 'refreshToken=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
 };
