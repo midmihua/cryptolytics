@@ -80,11 +80,8 @@ const me = async (req, res, next) => {
 
         if (!collection)
             throw new ValidationError(notify.collectionNotFetched('User'), 404);
-       
-        return res.status(200).json({
-            message: notify.collectionFetched('User'),
-            collection
-        });
+            
+        return res.status(200).json(collection);
 
     } catch (error) {
         error.statusCode = error.statusCode ? error.statusCode : 500;
