@@ -128,7 +128,32 @@ curl -v localhost:3000/api/me -H 'Content-Type: application/json' \
 - How to connect to a container:
 
 ```sh
-sudo docker exec -it backend_db_1 mongo -u admin -p secret cryptolytics
+docker exec -it backend_db_1 mongo -u admin -p secret cryptolytics
+
+docker exec -it backend_db_1 mongo -u root -p secret
+
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use cryptolytics
+switched to db cryptolytics
+> db.createUser({
+...         user: "admin",
+...         pwd: "secret",
+...         roles: [
+...             { role: "readWrite", db: "cryptolytics" }
+...         ]
+...     });
+Successfully added user: {
+	"user" : "admin",
+	"roles" : [
+		{
+			"role" : "readWrite",
+			"db" : "cryptolytics"
+		}
+	]
+}
 ```
 
 > ### [Mongo docs](https://docs.mongodb.com/manual/)
