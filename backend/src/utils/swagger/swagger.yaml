@@ -10,6 +10,8 @@ tags:
   description: "Healthcheck information"
 - name: "authentication"
   description: "Endpoints to /signup, /login, /me"
+- name: "exchange"
+  description: "Endpoints to /exchange"
 schemes:
 - "http"
 paths:
@@ -97,6 +99,7 @@ paths:
     get:
       tags:
       - "authentication"
+      summary: "User info"
       description: "This can only be done by the logged in user."
       produces:
       - "application/json"
@@ -111,6 +114,112 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/MeResponse"
+  /exchange:
+    post:
+      tags:
+      - "exchange"
+      summary: "Add new exchange"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Created exchange object"
+        required: true
+        schema:
+          $ref: "#/definitions/Exchange"
+      responses:
+        201:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ExchangeResponse"
+        404:
+          description: "failed operation: ValidationError"
+        422:
+          description: "failed operation: ValidationError"
+        500:
+          description: "5xx - server errors"
+    get:
+      tags:
+      - "exchange"
+      summary: "Exchange info"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ExchangeResponse"
+  /exchange/{id}:
+    put:
+      tags:
+      - "exchange"
+      summary: "Update exchange by ID"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID of the exchange that needs to be deleted"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated exchange object"
+        required: true
+        schema:
+          $ref: "#/definitions/Exchange"
+      responses:
+        200:
+          description: "successful operation"
+        404:
+          description: "Exchange not found / not removed"
+        500:
+          description: "5xx - server errors"
+    delete:
+      tags:
+      - "exchange"
+      summary: "Delete exchange by ID"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID of the exchange that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+        404:
+          description: "Exchange not found / not removed"
+        500:
+          description: "5xx - server errors"
 definitions:
   User:
     type: "object"
@@ -148,6 +257,22 @@ definitions:
       message:
         type: "string"
       collection:
+        type: "object"
+  Exchange:
+    type: "object"
+    properties:
+      exchange:
+        type: "string"
+      url:
+        type: "string"
+      description:
+        type: "string"
+  ExchangeResponse:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+      result:
         type: "object"
 externalDocs:
   description: "Github README"

@@ -1,76 +1,76 @@
 class Notification {
 
-    enterValidField(field) {
-        return `Please enter a valid ${field}`;
-    }
+  enterValidField(field) {
+    return `Please enter a valid ${field}`;
+  }
 
-    entityCreated(entity) {
-        return `${entity} created successfully`;
-    }
+  entityCreated(entity) {
+    return `${entity} created successfully`;
+  }
 
-    entityNotCreated(entity) {
-        return `${entity} is not created`;
-    }
+  entityNotCreated(entity) {
+    return `${entity} is not created`;
+  }
 
-    entityUpdated(entity) {
-        return `${entity} updated successfully`;
-    }
+  entityUpdated(entity) {
+    return `${entity} updated successfully`;
+  }
 
-    entityNotUpdated(entity) {
-        return `${entity} is not updated`;
-    }
+  entityNotUpdated(entity) {
+    return `${entity} is not updated`;
+  }
 
-    entityRemoved(entity) {
-        return `${entity} removed successfully`;
-    }
+  entityRemoved(entity) {
+    return `${entity} removed successfully`;
+  }
 
-    entityNotRemoved(entity) {
-        return `${entity} is not removed`;
-    }
+  entityNotRemoved(entity) {
+    return `${entity} is not removed`;
+  }
 
-    entityNotFound(entity) {
-        return `${entity} can not be found`;
-    }
+  entityNotFound(entity) {
+    return `${entity} can not be found`;
+  }
 
-    fieldExists(field) {
-        return `${field} already exists`;
-    }
+  fieldExists(field) {
+    return `${field} already exists`;
+  }
 
-    fieldSymbolsEqualOrMore(field, count) {
-        return `${field} should be ${count} symbol(s) or more`;
-    }
+  fieldSymbolsEqualOrMore(field, count) {
+    return `${field} should be ${count} symbol(s) or more`;
+  }
 
-    fieldSymbolsBetween(field, min, max) {
-        return `${field} should be between ${min} and ${max} symbols`;
-    }
+  fieldSymbolsBetween(field, min, max) {
+    return `${field} should be between ${min} and ${max} symbols`;
+  }
 
-    collectionNotFetched(collection) {
-        return `${collection} collection not fetched`;
-    }
+  collectionNotFetched(collection) {
+    return `${collection} collection not fetched`;
+  }
 
-    collectionFetched(collection) {
-        return `${collection} collection fetched successfully`;
-    }
+  collectionFetched(collection) {
+    return `${collection} collection fetched successfully`;
+  }
 
-    incorrectEntityProvided(entity) {
-        return `Incorrect ${entity} provided`;
-    }
+  incorrectEntityProvided(entity) {
+    return `Incorrect ${entity} provided`;
+  }
 
-    incorrectHeaderValue(header) {
-        return `${header} value is incorrect`;
-    }
+  incorrectHeaderValue(header) {
+    return `${header} value is incorrect`;
+  }
 
-    generalIncorrectData() {
-        return `Validation failed due to incorrect data`;
-    }
+  generalIncorrectData() {
+    return `Validation failed due to incorrect data`;
+  }
 
-    generalNotAuthenticated() {
-        return `You are not authenticated`;
-    }
+  generalNotAuthenticated() {
+    return `You are not authenticated`;
+  }
 
-    paramsIdNotFound(prop) {
-        return `params.${prop} is not provided or does not exist`;
-    }
+  paramsIdNotFound(prop) {
+    return `params.${prop} is not provided or does not exist`;
+  }
 }
 
 module.exports.notify = new Notification();

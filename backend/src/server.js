@@ -6,9 +6,11 @@ const { APP_PORT } = require('./config');
 
 // Models
 const User = require('./models/user');
+const Exchange = require('./models/exchange');
 
 // Routes
 const { authRoutes } = require('./routes/auth');
+const { exchangeRoutes } = require('./routes/exchange');
 const { incorrectRoute } = require('./routes/404');
 
 // Middlewares
@@ -20,15 +22,16 @@ const { logging } = require('./services/logging');
 
 // Lists of routes
 const routes = [
-    authRoutes(User, isAuthenticated),
-    incorrectRoute // should be final in the list
+  authRoutes(User, isAuthenticated),
+  exchangeRoutes(Exchange, isAuthenticated),
+  incorrectRoute // should be final in the list
 ];
 
 // Init app instance
 const app = createApp({
-    routes,
-    logging,
-    errorHandling
+  routes,
+  logging,
+  errorHandling
 });
 
 // Connect to database and start app
@@ -36,28 +39,28 @@ let server;
 let uri;
 
 db.connect()
-    .then((response, error) => {
-        if (error)
-            throw new Error(error);
+  .then((response, error) => {
+    if (error)
+      throw new Error(error);
 
-        uri = response.uri;
-        server = app.listen(APP_PORT, () => {
-            console.log(`Listening on ${APP_PORT}`);
-            console.log(`ENV: ${process.env.NODE_ENV}`);
-            console.log(`MONGO: ${uri}`);
-        });
+    uri = response.uri;
+    server = app.listen(APP_PORT, () => {
+      console.log(`Listening on ${APP_PORT}`);
+      console.log(`ENV: ${process.env.NODE_ENV}`);
+      console.log(`MONGO: ${uri}`);
     });
+  });
 
 // Shutdown
 const stopHandler = () => {
-    db && db.close()
-        .then((response) => {
-            console.log(`MONGO connection closed on: ${response && response.uri ? response.uri : uri}`);
-        });
-
-    server && server.close(() => {
-        console.log(`Server stopped on ${APP_PORT}`);
+  db && db.close()
+    .then((response) => {
+      console.log(`MONGO connection closed on: ${response && response.uri ? response.uri : uri}`);
     });
+
+  server && server.close(() => {
+    console.log(`Server stopped on ${APP_PORT}`);
+  });
 };
 
 // Exit events listener

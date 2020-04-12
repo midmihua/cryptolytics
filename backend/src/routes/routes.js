@@ -1,9 +1,16 @@
 const BASE = '/api';
 
 module.exports.AUTH = {
-    ROUTES: {
-        SIGNUP: `${BASE}/signup`,
-        LOGIN: `${BASE}/login`,
-        ME: `${BASE}/me`
-    }
+  ROUTES: {
+    SIGNUP: `${BASE}/signup`,
+    LOGIN: `${BASE}/login`,
+    ME: `${BASE}/me`,
+  }
+};
+
+module.exports.GENERIC = {
+  ROUTES: {
+    EXCHANGE: `${BASE}/exchange`,
+    PORTFOLIO: `${BASE}/portfolio`,
+  }
 };

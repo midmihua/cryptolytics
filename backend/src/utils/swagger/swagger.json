@@ -1,243 +1,432 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "RESTApi documentation",
-        "version": "1.0.0",
-        "title": "Cryptolytics Backend App"
+  "swagger": "2.0",
+  "info": {
+    "description": "RESTApi documentation",
+    "version": "1.0.0",
+    "title": "Cryptolytics Backend App"
+  },
+  "host": "localhost:8000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "actuator",
+      "description": "Healthcheck information"
     },
-    "host": "localhost:8000",
-    "basePath": "/api",
-    "tags": [
-        {
-            "name": "actuator",
-            "description": "Healthcheck information"
-        },
-        {
-            "name": "authentication",
-            "description": "Endpoints to /signup, /login, /me"
-        }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "paths": {
-        "/actuator/info": {
-            "get": {
-                "tags": [
-                    "actuator"
-                ],
-                "summary": "Get general info",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "default": {
-                        "description": "Successful operation"
-                    }
-                }
-            }
-        },
-        "/actuator/metrics": {
-            "get": {
-                "tags": [
-                    "actuator"
-                ],
-                "summary": "Get metrics info",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "default": {
-                        "description": "Successful operation"
-                    }
-                }
-            }
-        },
-        "/actuator/health": {
-            "get": {
-                "tags": [
-                    "actuator"
-                ],
-                "summary": "Get status info",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "default": {
-                        "description": "successful operation"
-                    }
-                }
-            }
-        },
-        "/signup": {
-            "post": {
-                "tags": [
-                    "authentication"
-                ],
-                "summary": "Signup user into the system",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Created user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/UserResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "failed operation: ValidationError"
-                    },
-                    "422": {
-                        "description": "failed operation: ValidationError"
-                    },
-                    "500": {
-                        "description": "5xx - server errors"
-                    }
-                }
-            }
-        },
-        "/login": {
-            "post": {
-                "tags": [
-                    "authentication"
-                ],
-                "summary": "Login user into the system",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Authenticated user object",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/UserLogin"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/UserLoginResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "failed operation: ValidationError"
-                    },
-                    "422": {
-                        "description": "failed operation: ValidationError"
-                    },
-                    "500": {
-                        "description": "5xx - server errors"
-                    }
-                }
-            }
-        },
-        "/me": {
-            "get": {
-                "tags": [
-                    "authentication"
-                ],
-                "description": "This can only be done by the logged in user.",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "$ref": "#/definitions/MeResponse"
-                        }
-                    }
-                }
-            }
-        }
+    {
+      "name": "authentication",
+      "description": "Endpoints to /signup, /login, /me"
     },
-    "definitions": {
-        "User": {
-            "type": "object",
-            "properties": {
-                "username": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "UserResponse": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string"
-                },
-                "result": {
-                    "type": "object"
-                }
-            }
-        },
-        "UserLogin": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "UserLoginResponse": {
-            "type": "object",
-            "properties": {
-                "token": {
-                    "type": "string"
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "MeResponse": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string"
-                },
-                "collection": {
-                    "type": "object"
-                }
-            }
-        }
-    },
-    "externalDocs": {
-        "description": "Github README",
-        "url": "https://github.com/midmihua/cryptolytics/blob/develop/backend/README.md"
+    {
+      "name": "exchange",
+      "description": "Endpoints to /exchange"
     }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/actuator/info": {
+      "get": {
+        "tags": [
+          "actuator"
+        ],
+        "summary": "Get general info",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "default": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/actuator/metrics": {
+      "get": {
+        "tags": [
+          "actuator"
+        ],
+        "summary": "Get metrics info",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "default": {
+            "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "/actuator/health": {
+      "get": {
+        "tags": [
+          "actuator"
+        ],
+        "summary": "Get status info",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Signup user into the system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserResponse"
+            }
+          },
+          "404": {
+            "description": "failed operation: ValidationError"
+          },
+          "422": {
+            "description": "failed operation: ValidationError"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "Login user into the system",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Authenticated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/UserLoginResponse"
+            }
+          },
+          "401": {
+            "description": "failed operation: ValidationError"
+          },
+          "422": {
+            "description": "failed operation: ValidationError"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": [
+          "authentication"
+        ],
+        "summary": "User info",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/MeResponse"
+            }
+          }
+        }
+      }
+    },
+    "/exchange": {
+      "post": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Add new exchange",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created exchange object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Exchange"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ExchangeResponse"
+            }
+          },
+          "404": {
+            "description": "failed operation: ValidationError"
+          },
+          "422": {
+            "description": "failed operation: ValidationError"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Exchange info",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ExchangeResponse"
+            }
+          }
+        }
+      }
+    },
+    "/exchange/{id}": {
+      "put": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Update exchange by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the exchange that needs to be deleted",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated exchange object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Exchange"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Exchange not found / not removed"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Delete exchange by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the exchange that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Exchange not found / not removed"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "result": {
+          "type": "object"
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "UserLoginResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "MeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "collection": {
+          "type": "object"
+        }
+      }
+    },
+    "Exchange": {
+      "type": "object",
+      "properties": {
+        "exchange": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "ExchangeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "result": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Github README",
+    "url": "https://github.com/midmihua/cryptolytics/blob/develop/backend/README.md"
+  }
 }

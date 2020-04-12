@@ -6,17 +6,17 @@ const DB_PASSWORD = process.env.MONGO_PASSWORD;
 const DB_URI = `mongodb://${DB_USER}:${encodeURIComponent(DB_PASSWORD)}@${HOST}:${PORT}/${DB}`;
 
 const DB_OPTIONS = {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
 };
 
 module.exports = {
-    HOST,
-    PORT,
-    DB,
-    DB_USER,
-    DB_PASSWORD,
-    DB_URI,
-    DB_OPTIONS
+  HOST,
+  PORT,
+  DB,
+  DB_USER,
+  DB_PASSWORD,
+  DB_URI,
+  DB_OPTIONS
 };
