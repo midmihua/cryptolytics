@@ -1,0 +1,30 @@
+@import 'shared/variables.scss';
+
+.dashboard-top-menu__component {
+  height: 140px;
+  @include display-flex;
+  @include flex-direction(column);
+
+  .wrapper {
+    @include flex(1 0 auto);
+    @include display-flex;
+    @include align-items-center;
+    @include jc-space-between;
+
+    .page-header {
+      padding-top: 40px;
+
+      .page-name {
+        margin-bottom: 20px;
+        font-size: 36px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .bottom-line {
+    height: 3px;
+    background: $soft-dark;
+    @include border-radius(2px);
+  }
+}

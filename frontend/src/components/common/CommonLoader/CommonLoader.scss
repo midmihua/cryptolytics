@@ -1,0 +1,13 @@
+@import 'shared/variables.scss';
+
+.ui.dimmer {
+  &.common-loader__component {
+    background: $dark;
+
+    .content {
+      .ui.loader {
+        color: $primary-text;
+      }
+    }
+  }
+}

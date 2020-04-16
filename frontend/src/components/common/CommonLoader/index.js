@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 
 import { Dimmer, Loader } from 'semantic-ui-react';
 
+import './CommonLoader.css';
+
 const CommonLoader = ({ active }) => (
   <Dimmer
+    className="common-loader__component"
     active={!!active}
     inverted
     page

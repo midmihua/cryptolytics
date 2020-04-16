@@ -1,11 +1,12 @@
 import React from 'react';
 
+import AuthLayout from 'components/authentication/AuthLayout';
 import SignupForm from 'components/authentication/SignupForm';
 
 const SignupPage = () => (
-  <div className="signup-page__component">
+  <AuthLayout>
     <SignupForm />
-  </div>
+  </AuthLayout>
 );
 
 export default SignupPage;

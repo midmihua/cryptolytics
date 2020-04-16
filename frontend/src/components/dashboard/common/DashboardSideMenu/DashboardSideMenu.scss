@@ -1,0 +1,185 @@
+@import 'shared/variables.scss';
+
+// --- Variables ---
+$menu-item-height: 80px;
+
+// -- Mixins ---
+@mixin menu_1024 {
+  width: 65px;
+
+  .logo-wrapper {
+    width: 65px;
+    height: 80px;
+
+    .logo {
+      display: none;
+    }
+  }
+
+  .nav-wrapper {
+    .nav-item {
+      padding: 0 20px;
+
+      .border-left {
+        visibility: hidden!important;
+      }
+
+      .name {
+        display: none;
+      }
+
+      .icon {
+        width: 25px;
+        min-width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+
+// -- Main styles ---
+.dashboard-side-menu__component {
+  width: 280px;
+  height: 100%;
+  background: $soft-dark;
+  position: relative;
+
+  &.narrow {
+    @include menu_1024;
+  }
+
+  .logo-wrapper {
+    height: 140px;
+    border-bottom: 1px solid $dark;
+    @include display-flex;
+    @include align-items-center;
+    @include jc-center;
+
+    .logo {
+      font-size: 28px;
+      font-weight: 600;
+      color: $orange;
+    }
+  }
+
+  .nav-wrapper {
+    .nav-item {
+      height: $menu-item-height;
+      padding: 0 40px;
+      display: block;
+      position: relative;
+      @include display-flex;
+      @include align-items-center;
+
+      &:hover,
+      &.active {
+        .icon {
+          &.home {
+            background-image: url('./icons/ic_home_hover.svg');
+          }
+
+          &.portfolios {
+            background-image: url('./icons/ic_portfolios_hover.svg');
+          }
+
+          &.positions {
+            background-image: url('./icons/ic_positions_hover.svg');
+          }
+        }
+
+        .name {
+          color: $orange;
+        }
+      }
+
+      &:hover {
+        .border-left {
+          visibility: hidden;
+        }
+      }
+
+      &.active {
+        .border-left {
+          visibility: visible;
+        }
+      }
+
+      .border-left {
+        width: 6px;
+        height: $menu-item-height;
+        background: $orange;
+        position: absolute;
+        left: 0;
+        visibility: hidden;
+        @include border-radius(3px);
+      }
+
+      .icon {
+        width: 30px;
+        min-width: 30px;
+        height: 30px;
+        margin-right: 40px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        @include transition(all, .1s, ease-in-out);
+
+        &.home {
+          background-image: url('./icons/ic_home.svg');
+        }
+
+        &.portfolios {
+          background-image: url('./icons/ic_portfolios.svg');
+        }
+
+        &.positions {
+          background-image: url('./icons/ic_positions.svg');
+        }
+      }
+
+      .name {
+        color: $secondary-text;
+        font-size: 16px;
+        font-weight: 400;
+        @include transition(all, .1s, ease-in-out);
+      }
+    }
+  }
+
+  .hide-button {
+    width: 8px;
+    height: 14px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('./icons/ic_hide_left.svg');
+    cursor: pointer;
+    outline: none;
+    @include transition(all, .1s, ease-in-out);
+    position: absolute;
+    right: 0;
+    top: 133px;
+
+    &:hover {
+      background-image: url('./icons/ic_hide_left_hover.svg');
+    }
+
+    &.narrow {
+      background-image: url('./icons/ic_hide_right.svg');
+      right: -8px;
+
+      &:hover {
+        background-image: url('./icons/ic_hide_right_hover.svg');
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    @include menu_1024;
+  }
+}

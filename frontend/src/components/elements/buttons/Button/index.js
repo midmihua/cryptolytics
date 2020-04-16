@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { Button as Btn } from 'semantic-ui-react';
 
+import './Button.css';
+
 const Button = ({
   children,
   onClick,

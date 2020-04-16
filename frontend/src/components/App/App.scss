@@ -1,12 +1,13 @@
 @import 'shared/variables.scss';
 
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
 
 body {
-  font-family: $font-family;
+  background: $dark;
+  font-family: $primary-font;
   color: $primary-text;
 
   h1, h2, h3 {
-    font-family: $font-family;
+    font-family: $primary-font;
   }
 }

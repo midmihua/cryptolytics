@@ -1,27 +1,32 @@
 import React from 'react';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import MainLandingPage from 'pages/landing/MainLandingPage';
 
 import LoginPage from 'pages/authentication/LoginPage';
 import SignupPage from 'pages/authentication/SignupPage';
 
-import DashboardPage from 'pages/dashboard/DashboardPage';
+import HomePage from 'pages/dashboard/HomePage';
+import PortfoliosPage from 'pages/dashboard/portfolios/PortfoliosPage';
+import PositionsPage from 'pages/dashboard/positions/PositionsPage';
 
 export default (
-  <BrowserRouter>
-    <Switch>
-      {/* Landing */}
-      <Route path="/" exact component={MainLandingPage} />
+  <Switch>
+    {/* Landing */}
+    <Route path="/" exact component={MainLandingPage} />
 
-      {/* Authentication */}
-      <Route path="/login" name="login" component={LoginPage} />
-      <Route path="/signup" name="signup" component={SignupPage} />
+    {/* Authentication */}
+    <Route path="/login" name="login" component={LoginPage} />
+    <Route path="/signup" name="signup" component={SignupPage} />
 
-      {/* Dashboard */}
-      <Route path="/dashboard" name="dashboard" component={DashboardPage} />
+    {/* Dashboard */}
+    <Route path="/dashboard/home" name="home" component={HomePage} />
+    <Route path="/dashboard/portfolios" name="portfolios" component={PortfoliosPage} />
+    <Route path="/dashboard/positions" name="positions" component={PositionsPage} />
 
-    </Switch>
-  </BrowserRouter>
+    {/* 404 Not Found */}
+    <Route render={() => <h2>404 page not found!</h2>} />
+
+  </Switch>
 );
