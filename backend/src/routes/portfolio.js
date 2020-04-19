@@ -1,16 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const { } = require('./validation/portfolio');
+const { validatePortfolioPost, validatePortfolioPut } = require('./validation/portfolio');
 const { GENERIC } = require('./routes');
-const { } = require('../controllers/portfolio');
+const { getPortfolio, postPortfolio, putPortfolio, deletePortfolio } = require('../controllers/portfolio');
 
-const portfolioRoutes = (authMiddleware) => {
+const portfolioRoutes = (Portfolio, authMiddleware) => {
 
-  router.route(GENERIC.ROUTES.PORTFOLIO).get(authMiddleware);
-  router.route(GENERIC.ROUTES.PORTFOLIO).post(authMiddleware);
-  router.route(GENERIC.ROUTES.PORTFOLIO).put(authMiddleware);
-  router.route(GENERIC.ROUTES.PORTFOLIO).delete(authMiddleware);
+  router.route(GENERIC.ROUTES.PORTFOLIO).get(authMiddleware, getPortfolio);
+  router.route(GENERIC.ROUTES.PORTFOLIO).post(authMiddleware, validatePortfolioPost(Portfolio), postPortfolio);
+  router.route(`${GENERIC.ROUTES.PORTFOLIO}/:id`).put(authMiddleware, validatePortfolioPut(), putPortfolio);
+  router.route(`${GENERIC.ROUTES.PORTFOLIO}/:id`).delete(authMiddleware, deletePortfolio);
 
   return router;
 };

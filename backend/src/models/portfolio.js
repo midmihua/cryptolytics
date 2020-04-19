@@ -6,10 +6,8 @@ const portfolioSchema = new Schema(
     portfolio:
     {
       type: String,
-      unique: true,
       required: [true, 'Portfolio name is required'],
-      max: [255, 'Portfolio name is too long'],
-      set: v => v.toLowerCase()
+      max: [255, 'Portfolio name is too long']
     },
     exchange:
     {
@@ -33,5 +31,11 @@ const portfolioSchema = new Schema(
     timestamps: true
   }
 );
+
+portfolioSchema.set('toJSON', {
+  transform: (doc, { __v, createdAt, updatedAt, ...rest }, options) => rest
+});
+
+portfolioSchema.index({ portfolio: 1, user: 1 }, { unique: true });
 
 module.exports = mongoose.model('Portfolio', portfolioSchema);

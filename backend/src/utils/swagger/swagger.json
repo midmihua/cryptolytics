@@ -19,6 +19,10 @@
     {
       "name": "exchange",
       "description": "Endpoints to /exchange"
+    },
+    {
+      "name": "portfolio",
+      "description": "Endpoints to /portfolio"
     }
   ],
   "schemes": [
@@ -275,7 +279,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ID of the exchange that needs to be deleted",
+            "description": "ID of the exchange that needs to be updated",
             "required": true,
             "type": "string"
           },
@@ -332,6 +336,165 @@
           },
           "404": {
             "description": "Exchange not found / not removed"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      }
+    },
+    "/portfolio": {
+      "post": {
+        "tags": [
+          "portfolio"
+        ],
+        "summary": "Add new portfolio",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created portfolio object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Portfolio"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PortfolioResponse"
+            }
+          },
+          "404": {
+            "description": "failed operation: ValidationError"
+          },
+          "422": {
+            "description": "failed operation: ValidationError"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "portfolio"
+        ],
+        "summary": "Portfolio info",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PortfolioResponse"
+            }
+          }
+        }
+      }
+    },
+    "/portfolio/{id}": {
+      "put": {
+        "tags": [
+          "portfolio"
+        ],
+        "summary": "Update portfolio by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the portfolio that needs to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated portfolio object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Portfolio"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Portfolio not found / not removed"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "portfolio"
+        ],
+        "summary": "Delete portfolio by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the portfolio that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Portfolio not found / not removed"
           },
           "500": {
             "description": "5xx - server errors"
@@ -414,6 +577,31 @@
       }
     },
     "ExchangeResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "result": {
+          "type": "object"
+        }
+      }
+    },
+    "Portfolio": {
+      "type": "object",
+      "properties": {
+        "portfolio": {
+          "type": "string"
+        },
+        "exchange": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "PortfolioResponse": {
       "type": "object",
       "properties": {
         "message": {

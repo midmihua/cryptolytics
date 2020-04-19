@@ -7,10 +7,12 @@ const { APP_PORT } = require('./config');
 // Models
 const User = require('./models/user');
 const Exchange = require('./models/exchange');
+const Portfolio = require('./models/portfolio');
 
 // Routes
 const { authRoutes } = require('./routes/auth');
 const { exchangeRoutes } = require('./routes/exchange');
+const { portfolioRoutes } = require('./routes/portfolio');
 const { incorrectRoute } = require('./routes/404');
 
 // Middlewares
@@ -24,6 +26,7 @@ const { logging } = require('./services/logging');
 const routes = [
   authRoutes(User, isAuthenticated),
   exchangeRoutes(Exchange, isAuthenticated),
+  portfolioRoutes(Portfolio, isAuthenticated),
   incorrectRoute // should be final in the list
 ];
 
