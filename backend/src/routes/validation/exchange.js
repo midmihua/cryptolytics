@@ -21,7 +21,7 @@ module.exports.validateExchangePost = (Exchange) => {
       .withMessage(notify.enterValidField('url')),
     body('user')
       .trim()
-      .exists()
+      .notEmpty()
       .withMessage(notify.enterValidField('user')),
     body('description')
       .trim()
