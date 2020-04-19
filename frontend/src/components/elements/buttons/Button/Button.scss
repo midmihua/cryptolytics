@@ -1,0 +1,22 @@
+@import 'shared/variables.scss';
+
+.ui.button {
+  &.button__component {
+    height: 50px;
+    margin: 0;
+    padding: 0 30px;
+    display: block;
+    font-family: $primary-font;
+    color: $primary-text;
+    border: 2px solid $secondary-text;
+    @include border-radius(50px);
+    font-weight: 500;
+    @include transition(all, .1s, ease-in-out);
+    text-align: center;
+    background: inherit;
+
+    &:hover {
+      background: $secondary-text;
+    }
+  }
+}

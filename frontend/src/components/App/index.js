@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+
+import { BrowserRouter } from 'react-router-dom';
 
 import MainAuthContainer from 'components/authentication/MainAuthContainer';
 import routes from 'routes';
@@ -10,25 +12,21 @@ import CommonLoader from 'components/common/CommonLoader';
 import './App.css';
 
 
-class App extends Component {
-  static propTypes = {
-    siteLoading: PropTypes.bool,
-  }
+const App = ({ siteLoading }) => (
+  <BrowserRouter>
+    <MainAuthContainer>
+      <CommonLoader active={!!siteLoading} />
+      {routes}
+    </MainAuthContainer>
+  </BrowserRouter>
+);
 
-  static defaultProps = {
-    siteLoading: false,
-  }
+App.propTypes = {
+  siteLoading: PropTypes.bool,
+}
 
-  render() {
-    const { siteLoading } = this.props;
-
-    return (
-      <MainAuthContainer>
-        <CommonLoader active={!!siteLoading} />
-        {routes}
-      </MainAuthContainer>
-    );
-  }
+App.defaultProps = {
+  siteLoading: false,
 }
 
 const mapStateToProps = state => (

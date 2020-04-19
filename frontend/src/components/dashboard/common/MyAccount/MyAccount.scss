@@ -1,0 +1,68 @@
+@import 'shared/variables.scss';
+
+.dahsboard-my-account__component {
+  position: relative;
+  @include display-flex;
+  @include align-items-center;
+
+  .account-name {
+    margin-right: 40px;
+    color: $secondary-text;
+    font-weight: 500;
+
+    span {
+      color: $primary-text;
+    }
+  }
+
+  .menu-logo {
+    width: 25px;
+    min-width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('./icons/ic_menu.svg');
+    outline: none;
+    cursor: pointer;
+    @include transition(all, .1s, ease-in-out);
+
+    &:hover {
+      background-image: url('./icons/ic_menu_hover.svg');
+    }
+  }
+
+  .my-account-popup {
+    padding: 30px;
+    background: $soft-dark;
+    @include border-radius(6px);
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    .email {
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .action-item {
+      margin-bottom: 20px;
+      display: block;
+      color: $secondary-text;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 12px;
+      @include transition(all, .1s, ease-in-out);
+
+      &:hover {
+        color: $orange;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

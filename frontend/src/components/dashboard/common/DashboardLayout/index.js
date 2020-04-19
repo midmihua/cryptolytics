@@ -1,23 +1,105 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-import DashboardTopMenu from '../DashboardTopMenu';
-import DashboardContentArea from '../DashboardContentArea';
-import DashboardFooter from '../DashboardFooter';
+import { connect } from 'react-redux';
+import { setActivePage, resetActivePage } from 'redux/reducers/common';
+import { Redirect } from 'react-router-dom';
+
+import DashboardTopMenu from 'components/dashboard/common//DashboardTopMenu';
+import DashboardSideMenu from 'components/dashboard/common/DashboardSideMenu';
+import DashboardContentArea
+  from 'components/dashboard/common//DashboardContentArea';
+import DashboardFooter from 'components/dashboard/common//DashboardFooter';
+
+import { getCookie } from 'utils/cookies';
 
 import './DashboardLayout.css';
 
-class DashboardLayout extends Component {
-  render() {
-    return (
-      <div className="dashboard-layout__component">
-        <DashboardTopMenu />
-        <DashboardContentArea>
-          {this.props.children}
-        </DashboardContentArea>
-        <DashboardFooter />
-      </div>
-    );
-  }
-}
+const DashboardLayout = props => {
+  const {
+    me,
+    meError,
+    children,
+    pageTitle,
+    activePage,
+    setActivePage,
+    resetActivePage,
+  } = props;
 
-export default DashboardLayout;
+  useEffect(() => {
+    setActivePage(activePage);
+
+    return () => {
+      resetActivePage();
+    };
+  }, []);
+
+  if ((!me && !getCookie('accessToken')) || meError) {
+    return <Redirect to="/" />
+  };
+
+  if (!me) return null;
+
+  return (
+    <div className="dashboard-layout__component">
+      {/* Side Menu Wrapper */}
+      <div className="side-menu-wrapper">
+        <DashboardSideMenu />
+      </div>
+
+      {/* Main Wrapper */}
+      <div className="main-wrapper">
+        {/* Top Menu */}
+        <div className="top-menu-wrapper">
+          <DashboardTopMenu
+            pageTitle={pageTitle}
+          />
+        </div>
+
+        {/* Content Area */}
+        <div className="content-area-wrapper">
+          <DashboardContentArea>
+            {children}
+          </DashboardContentArea>
+        </div>
+
+        {/* Footer */}
+        <div className="footer-wrapper">
+          <DashboardFooter />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+DashboardLayout.propTypes = {
+  me: PropTypes.object,
+  meError: PropTypes.object,
+  setActivePage: PropTypes.func.isRequired,
+  resetActivePage: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
+  pageTitle: PropTypes.string,
+  activePage: PropTypes.string,
+};
+
+DashboardLayout.defaultProps = {
+  me: null,
+  meError: null,
+  pageTitle: null,
+  activePage: null,
+};
+
+const mapStateToProps = state => (
+  {
+    me: state.usersReducer.me,
+    meError: state.usersReducer.meError,
+  }
+);
+
+export default connect(
+  mapStateToProps,
+  {
+    setActivePage,
+    resetActivePage,
+  },
+)(DashboardLayout);

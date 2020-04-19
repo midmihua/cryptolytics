@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="22px" viewBox="0 0 12 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>ic_hide_right</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Home-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.325009301">
+        <g id="Artboard" transform="translate(-287.000000, -472.000000)" fill="#FE9238" fill-rule="nonzero">
+            <g id="Side-Menu">
+                <g id="ic_hide_right" transform="translate(293.000000, 483.000000) rotate(180.000000) translate(-293.000000, -483.000000) translate(287.000000, 472.000000)">
+                    <path d="M10.184944,0.313792653 L0.30726633,10.1914703 C-0.0984240025,10.5971607 -0.0984240025,11.2674316 0.30726633,11.6732984 L10.184944,21.550976 C10.8553914,22.221247 11.9840924,21.7450018 11.9840924,20.8101502 L11.9840924,1.05479487 C11.9840924,0.119766842 10.8553914,-0.356478332 10.184944,0.313792653 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

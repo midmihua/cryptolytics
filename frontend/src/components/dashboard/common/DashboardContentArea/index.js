@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './DashboardContentArea.css';
+
 const DashboardContentArea = ({ children }) => (
   <div className="dashboard-content-area__component">
-    <div className="contentt-wrapper">
-      {children}
-    </div>
+    {children}
   </div>
 );
 
 DashboardContentArea.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default DashboardContentArea;

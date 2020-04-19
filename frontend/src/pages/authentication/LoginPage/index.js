@@ -1,11 +1,12 @@
 import React from 'react';
 
+import AuthLayout from 'components/authentication/AuthLayout';
 import LoginForm from 'components/authentication/LoginForm';
 
 const LoginPage = () => (
-  <div className="login-page__component">
+  <AuthLayout>
     <LoginForm />
-  </div>
+  </AuthLayout>
 );
 
 export default LoginPage;

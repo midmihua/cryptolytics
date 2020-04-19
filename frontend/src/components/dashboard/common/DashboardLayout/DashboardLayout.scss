@@ -1,5 +1,21 @@
 @import 'shared/variables.scss';
 
 .dashboard-layout__component {
-  background: $green;
+  min-height: 100vh;
+  @include display-flex;
+
+  .main-wrapper {
+    padding: 0 40px;
+    @include flex(1 0 auto);
+    @include display-flex;
+    @include flex-direction(column);
+
+    .content-area-wrapper {
+      @include flex(1 0 auto);
+    }
+
+    @media only screen and (max-width: 1024px) {
+      padding: 0 20px;
+    }
+  }
 }

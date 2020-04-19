@@ -1,0 +1,22 @@
+@import 'shared/variables.scss';
+
+.auth-layout__component {
+  .wrapper {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+
+    .header {
+      margin-bottom: 40px;
+
+      a {
+        font-size: 18px;
+      }
+    }
+
+    @media only screen and (max-width: 1024px) {
+      padding: 20px;
+    }
+  }
+}
