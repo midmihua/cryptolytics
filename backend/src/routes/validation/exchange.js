@@ -19,10 +19,6 @@ module.exports.validateExchangePost = (Exchange) => {
       .trim()
       .isURL()
       .withMessage(notify.enterValidField('url')),
-    body('user')
-      .trim()
-      .notEmpty()
-      .withMessage(notify.enterValidField('user')),
     body('description')
       .trim()
       .isLength({ max: 512 })
