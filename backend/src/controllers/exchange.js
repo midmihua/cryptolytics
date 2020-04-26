@@ -6,7 +6,8 @@ const Exchange = require('../models/exchange');
 
 const getExchange = async (req, res, next) => {
   try {
-    const collection = await Exchange.find();
+    const { id } = req.params;
+    const collection = id ? await Exchange.findById(id) : await Exchange.find();
 
     if (!collection)
       throw new ValidationError(notify.collectionNotFetched('Exchange'), 404);
