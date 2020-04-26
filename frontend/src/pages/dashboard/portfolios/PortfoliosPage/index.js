@@ -1,14 +1,15 @@
 import React from 'react';
 
 import DashboardLayout from 'components/dashboard/common/DashboardLayout';
+import PortfoliosPageContent from 'components/dashboard/portfolios/PortfoliosPageContent';
 
-const PortfoliosPage = () => (
+const PortfoliosListPage = () => (
   <DashboardLayout
     pageTitle="Portfolios"
     activePage="portfolios"
   >
-    PortfoliosPage!
+    <PortfoliosPageContent />
   </DashboardLayout>
 );
 
-export default PortfoliosPage;
+export default PortfoliosListPage;

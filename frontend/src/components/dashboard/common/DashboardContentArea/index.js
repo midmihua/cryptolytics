@@ -10,7 +10,11 @@ const DashboardContentArea = ({ children }) => (
 );
 
 DashboardContentArea.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.string,
+  ]).isRequired,
 };
 
 export default DashboardContentArea;

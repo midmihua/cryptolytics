@@ -1,0 +1,15 @@
+@import 'shared/variables.scss';
+
+.portfolio-list-item__component {
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: block;
+  @include border-radius(4px);
+  background: $soft-dark;
+
+  .title {
+    font-size: 20px;
+    color: $primary-text;
+  }
+}

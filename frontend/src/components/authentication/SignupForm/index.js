@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { registrateUser, clearRegistrateUser } from 'redux/reducers/users';
+import { registrateUser, clearRegistrateUser } from 'redux/users/actions';
 
 import { Link } from 'react-router-dom';
 

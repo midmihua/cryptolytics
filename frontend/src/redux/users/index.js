@@ -1,6 +1,15 @@
-import restapi from 'utils/restapi';
-
-import { baseErrorsHandlerDecorator } from './common';
+import {
+  REGISTRATE_USER_SUCCESS,
+  REGISTRATE_USER_ERROR,
+  CLEAR_REGISTRATE_USER,
+  LOGGED_IN,
+  LOGIN_ERROR,
+  CLEAR_LOGIN_ERROR,
+  FETCH_ME,
+  FETCH_ME_ERROR,
+  LOGGING_OUT,
+  LOGGED_OUT,
+} from 'redux/users/types';
 
 const initialState = {
   me: null,
@@ -11,21 +20,6 @@ const initialState = {
   loginError: null,
   loggingOut: false,
 };
-
-
-const REGISTRATE_USER_SUCCESS = 'REGISTRATE_USER_SUCCESS';
-const REGISTRATE_USER_ERROR = 'REGISTRATE_USER_ERROR';
-const CLEAR_REGISTRATE_USER = 'CLEAR_REGISTRATE_USER';
-
-const LOGGED_IN = 'LOGGED_IN';
-const LOGIN_ERROR = 'LOGIN_ERROR';
-const CLEAR_LOGIN_ERROR = 'CLEAR_LOGIN_ERROR';
-
-const FETCH_ME = 'FETCH_ME';
-const FETCH_ME_ERROR = 'FETCH_ME_ERROR';
-
-const LOGGING_OUT = 'LOGGING_OUT';
-const LOGGED_OUT = 'LOGGED_OUT';
 
 
 export default (state = initialState, action) => {
@@ -94,56 +88,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-};
-
-
-export const registrateUser = (username, email, password) => baseErrorsHandlerDecorator(
-  REGISTRATE_USER_SUCCESS,
-  REGISTRATE_USER_ERROR,
-  () => restapi.post(
-    '/signup',
-    { username, email, password },
-  ),
-);
-
-export const clearRegistrateUser = () => (dispatch) => {
-  dispatch({
-    type: CLEAR_REGISTRATE_USER,
-  });
-};
-
-export const retrieveToken = (email, password)  => baseErrorsHandlerDecorator(
-  LOGGED_IN,
-  LOGIN_ERROR,
-  () => restapi.post(
-    '/login',
-    {
-      email,
-      password,
-    },
-  ),
-);
-
-export const clearLoginError = () => (dispatch) => {
-  dispatch({
-    type: CLEAR_LOGIN_ERROR,
-  });
-};
-
-export const fetchMe = () => baseErrorsHandlerDecorator(
-  FETCH_ME,
-  FETCH_ME_ERROR,
-  () => restapi.get('/me'),
-);
-
-export const logout = () => (dispatch) => {
-  dispatch({
-    type: LOGGING_OUT,
-  });
-};
-
-export const logoutComplete = () => (dispatch) => {
-  dispatch({
-    type: LOGGED_OUT,
-  });
 };
