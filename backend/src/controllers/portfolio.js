@@ -30,10 +30,10 @@ const postPortfolio = async (req, res, next) => {
       return next(error);
     }
 
-    const { portfolio, exchange, description } = req.body;
+    const { name, exchangeId, description } = req.body;
     const newPortfolio = new Portfolio({
-      portfolio,
-      exchange,
+      name,
+      exchangeId,
       user: req.userId,
       description
     });
@@ -72,9 +72,9 @@ const putPortfolio = async (req, res, next) => {
     if (!portfolioToUpdate)
       throw new ValidationError(notify.entityNotFound('Portfolio'), 404);
 
-    const { portfolio, exchange, description } = req.body;
-    portfolioToUpdate.portfolio = portfolio;
-    portfolioToUpdate.exchange = exchange;
+    const { name, exchangeId, description } = req.body;
+    portfolioToUpdate.name = name;
+    portfolioToUpdate.exchangeId = exchangeId;
     portfolioToUpdate.description = description;
 
     const result = portfolioToUpdate.save();

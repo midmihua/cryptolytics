@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 
 const exchangeSchema = new Schema(
   {
-    exchange:
+    name:
     {
       type: String,
       unique: true,
-      required: [true, 'Exchange name is required'],
-      min: [3, 'Exchange name is too short'],
-      max: [50, 'Exchange name is too long'],
+      required: [true, 'Name is required'],
+      min: [3, 'Name is too short'],
+      max: [50, 'Name is too long'],
       set: v => v.toLowerCase()
     },
     url:

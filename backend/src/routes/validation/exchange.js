@@ -4,15 +4,15 @@ const { notify } = require('../../utils/notification');
 
 module.exports.validateExchangePost = (Exchange) => {
   return [
-    body('exchange')
+    body('name')
       .trim()
       .isLength({ min: 3, max: 50 })
-      .withMessage(notify.fieldSymbolsBetween('exchange', 3, 50))
+      .withMessage(notify.fieldSymbolsBetween('name', 3, 50))
       .custom((value, { req }) => {
-        return Exchange.findOne({ exchange: value })
+        return Exchange.findOne({ name: value })
           .then(document => {
             if (document)
-              return Promise.reject(notify.fieldExists('exchange'));
+              return Promise.reject(notify.fieldExists('name'));
           });
       }),
     body('url')
@@ -28,10 +28,10 @@ module.exports.validateExchangePost = (Exchange) => {
 
 module.exports.validateExchangePut = () => {
   return [
-    body('exchange')
+    body('name')
       .trim()
       .isLength({ min: 3, max: 50 })
-      .withMessage(notify.fieldSymbolsBetween('exchange', 3, 50)),
+      .withMessage(notify.fieldSymbolsBetween('name', 3, 50)),
     body('url')
       .trim()
       .isURL()

@@ -28,9 +28,9 @@ const postExchange = async (req, res, next) => {
       return next(error);
     }
 
-    const { exchange, url, description } = req.body;
+    const { name, url, description } = req.body;
     const newExchange = new Exchange({
-      exchange,
+      name,
       url,
       user: req.userId,
       description
@@ -70,8 +70,8 @@ const putExchange = async (req, res, next) => {
     if (!exchangeToUpdate)
       throw new ValidationError(notify.entityNotFound('Exchange'), 404);
 
-    const { exchange, url, description } = req.body;
-    exchangeToUpdate.exchange = exchange;
+    const { name, url, description } = req.body;
+    exchangeToUpdate.name = name;
     exchangeToUpdate.url = url;
     exchangeToUpdate.description = description;
 

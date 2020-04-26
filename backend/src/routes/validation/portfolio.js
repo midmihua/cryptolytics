@@ -4,21 +4,21 @@ const { notify } = require('../../utils/notification');
 
 module.exports.validatePortfolioPost = (Portfolio) => {
   return [
-    body('portfolio')
+    body('name')
       .trim()
       .isLength({ min: 3, max: 255 })
-      .withMessage(notify.fieldSymbolsBetween('portfolio', 3, 255))
+      .withMessage(notify.fieldSymbolsBetween('name', 3, 255))
       .custom((value, { req }) => {
-        return Portfolio.findOne({ portfolio: value, user: req.userId })
+        return Portfolio.findOne({ name: value, user: req.userId })
           .then(document => {
             if (document)
-              return Promise.reject(notify.fieldExists('portfolio'));
+              return Promise.reject(notify.fieldExists('name'));
           });
       }),
-    body('exchange')
+    body('exchangeId')
       .trim()
       .notEmpty()
-      .withMessage(notify.enterValidField('exchange')),
+      .withMessage(notify.enterValidField('exchangeId')),
     body('description')
       .trim()
       .isLength({ max: 512 })
@@ -28,14 +28,14 @@ module.exports.validatePortfolioPost = (Portfolio) => {
 
 module.exports.validatePortfolioPut = () => {
   return [
-    body('portfolio')
+    body('name')
       .trim()
       .isLength({ min: 3, max: 255 })
-      .withMessage(notify.fieldSymbolsBetween('portfolio', 3, 255)),
-    body('exchange')
+      .withMessage(notify.fieldSymbolsBetween('name', 3, 255)),
+    body('exchangeId')
       .trim()
       .notEmpty()
-      .withMessage(notify.enterValidField('exchange')),
+      .withMessage(notify.enterValidField('exchangeId')),
     body('description')
       .trim()
       .isLength({ max: 512 })
