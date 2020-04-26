@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 const portfolioSchema = new Schema(
   {
-    portfolio:
+    name:
     {
       type: String,
-      required: [true, 'Portfolio name is required'],
-      max: [255, 'Portfolio name is too long']
+      required: [true, 'Name is required'],
+      min: [3, 'Name is too short'],
+      max: [255, 'Name is too long']
     },
-    exchange:
+    exchangeId:
     {
       type: Schema.Types.ObjectId,
       ref: 'Exchange',
@@ -36,6 +37,6 @@ portfolioSchema.set('toJSON', {
   transform: (doc, { __v, createdAt, updatedAt, ...rest }, options) => rest
 });
 
-portfolioSchema.index({ portfolio: 1, user: 1 }, { unique: true });
+portfolioSchema.index({ name: 1, user: 1 }, { unique: true });
 
 module.exports = mongoose.model('Portfolio', portfolioSchema);
