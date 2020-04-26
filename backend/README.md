@@ -181,7 +181,7 @@ test-collection
 > 
 ```
 
-### Useful commands
+> ### Useful commands
 
 #### Kill active process on a port
 
@@ -197,4 +197,11 @@ git pull --rebase origin develop
 
 ```sh
 git push origin branch_name
+```
+
+#### Run shell file
+
+```sh
+chmod +x file-name.sh
+./file-name.sh
 ```
