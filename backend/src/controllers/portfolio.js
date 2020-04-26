@@ -6,7 +6,10 @@ const Portfolio = require('../models/portfolio');
 
 const getPortfolio = async (req, res, next) => {
   try {
-    const collection = await Portfolio.find({ user: req.userId });
+    const { id } = req.params;
+    const collection = id
+      ? await Portfolio.findOne({ user: req.userId, _id: id })
+      : await Portfolio.find({ user: req.userId });
 
     if (!collection)
       throw new ValidationError(notify.collectionNotFetched('Portfolio'), 404);

@@ -9,6 +9,7 @@ const exchangeRoutes = (Exchange, authMiddleware) => {
 
   router.route(GENERIC.ROUTES.EXCHANGE).get(authMiddleware, getExchange);
   router.route(GENERIC.ROUTES.EXCHANGE).post(authMiddleware, validateExchangePost(Exchange), postExchange);
+  router.route(`${GENERIC.ROUTES.EXCHANGE}/:id`).get(authMiddleware, getExchange);
   router.route(`${GENERIC.ROUTES.EXCHANGE}/:id`).put(authMiddleware, validateExchangePut(), putExchange);
   router.route(`${GENERIC.ROUTES.EXCHANGE}/:id`).delete(authMiddleware, deleteExchange);
 

@@ -10,7 +10,7 @@ module.exports.AUTH = {
 
 module.exports.GENERIC = {
   ROUTES: {
-    EXCHANGE: `${BASE}/exchange`,
-    PORTFOLIO: `${BASE}/portfolio`,
+    EXCHANGE: `${BASE}/exchanges`,
+    PORTFOLIO: `${BASE}/portfolios`,
   }
 };

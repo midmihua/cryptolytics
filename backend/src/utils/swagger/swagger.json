@@ -72,7 +72,7 @@
         ],
         "responses": {
           "default": {
-            "description": "successful operation"
+            "description": "Successful operation"
           }
         }
       }
@@ -99,7 +99,7 @@
         ],
         "responses": {
           "201": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/UserResponse"
             }
@@ -138,7 +138,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/UserLoginResponse"
             }
@@ -176,15 +176,18 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/MeResponse"
             }
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       }
     },
-    "/exchange": {
+    "/exchanges": {
       "post": {
         "tags": [
           "exchange"
@@ -214,10 +217,13 @@
         ],
         "responses": {
           "201": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/ExchangeResponse"
             }
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
             "description": "failed operation: ValidationError"
@@ -250,15 +256,61 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/ExchangeResponse"
             }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Exchange not found"
           }
         }
       }
     },
-    "/exchange/{id}": {
+    "/exchanges/{id}": {
+      "get": {
+        "tags": [
+          "exchange"
+        ],
+        "summary": "Get exchange by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the exchange that needs to be fetched",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Exchange not found"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
       "put": {
         "tags": [
           "exchange"
@@ -295,10 +347,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
-            "description": "Exchange not found / not removed"
+            "description": "Exchange not found / updated"
           },
           "500": {
             "description": "5xx - server errors"
@@ -332,10 +387,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
-            "description": "Exchange not found / not removed"
+            "description": "Exchange not found / removed"
           },
           "500": {
             "description": "5xx - server errors"
@@ -343,7 +401,7 @@
         }
       }
     },
-    "/portfolio": {
+    "/portfolios": {
       "post": {
         "tags": [
           "portfolio"
@@ -373,10 +431,13 @@
         ],
         "responses": {
           "201": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/PortfolioResponse"
             }
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
             "description": "failed operation: ValidationError"
@@ -409,15 +470,58 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
+            "description": "Successful operation",
             "schema": {
               "$ref": "#/definitions/PortfolioResponse"
             }
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       }
     },
-    "/portfolio/{id}": {
+    "/portfolios/{id}": {
+      "get": {
+        "tags": [
+          "portfolio"
+        ],
+        "summary": "Get portfolio by ID",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the portfolio that needs to be fetched",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Portfolio not found"
+          },
+          "500": {
+            "description": "5xx - server errors"
+          }
+        }
+      },
       "put": {
         "tags": [
           "portfolio"
@@ -454,10 +558,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
-            "description": "Portfolio not found / not removed"
+            "description": "Portfolio not found / updated"
           },
           "500": {
             "description": "5xx - server errors"
@@ -491,10 +598,13 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Bad request"
           },
           "404": {
-            "description": "Portfolio not found / not removed"
+            "description": "Portfolio not found / removed"
           },
           "500": {
             "description": "5xx - server errors"

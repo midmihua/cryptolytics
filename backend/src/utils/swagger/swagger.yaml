@@ -46,7 +46,7 @@ paths:
       - "application/json"
       responses:
         default:
-          description: "successful operation"
+          description: "Successful operation"
   /signup:
     post:
       tags:
@@ -63,7 +63,7 @@ paths:
           $ref: "#/definitions/User"
       responses:
         201:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/UserResponse"
         404:
@@ -88,7 +88,7 @@ paths:
           $ref: "#/definitions/UserLogin"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/UserLoginResponse"
         401:
@@ -113,11 +113,13 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/MeResponse"
+        400:
+          description: "Bad request"
 
-  /exchange:
+  /exchanges:
     post:
       tags:
       - "exchange"
@@ -139,9 +141,11 @@ paths:
           $ref: "#/definitions/Exchange"
       responses:
         201:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/ExchangeResponse"
+        400:
+          description: "Bad request"
         404:
           description: "failed operation: ValidationError"
         422:
@@ -163,10 +167,41 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/ExchangeResponse"
-  /exchange/{id}:
+        400:
+          description: "Bad request"
+        404:
+          description: "Exchange not found"
+  /exchanges/{id}:
+    get:
+      tags:
+      - "exchange"
+      summary: "Get exchange by ID"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID of the exchange that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+        400:
+          description: "Bad request"
+        404:
+          description: "Exchange not found"
+        500:
+          description: "5xx - server errors"
     put:
       tags:
       - "exchange"
@@ -193,9 +228,11 @@ paths:
           $ref: "#/definitions/Exchange"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
+        400:
+          description: "Bad request"
         404:
-          description: "Exchange not found / not removed"
+          description: "Exchange not found / updated"
         500:
           description: "5xx - server errors"
     delete:
@@ -218,13 +255,15 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
+        400:
+          description: "Bad request"
         404:
-          description: "Exchange not found / not removed"
+          description: "Exchange not found / removed"
         500:
           description: "5xx - server errors"
           
-  /portfolio:
+  /portfolios:
     post:
       tags:
       - "portfolio"
@@ -246,9 +285,11 @@ paths:
           $ref: "#/definitions/Portfolio"
       responses:
         201:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/PortfolioResponse"
+        400:
+          description: "Bad request"
         404:
           description: "failed operation: ValidationError"
         422:
@@ -270,10 +311,39 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/PortfolioResponse"
-  /portfolio/{id}:
+        400:
+          description: "Bad request"
+  /portfolios/{id}:
+    get:
+      tags:
+      - "portfolio"
+      summary: "Get portfolio by ID"
+      description: "This can only be done by the logged in user."
+      produces:
+      - "application/json"
+      parameters:
+      - name: "Authorization"
+        in: "header"
+        description: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID of the portfolio that needs to be fetched"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+        400:
+          description: "Bad request"
+        404:
+          description: "Portfolio not found"
+        500:
+          description: "5xx - server errors"
     put:
       tags:
       - "portfolio"
@@ -300,9 +370,11 @@ paths:
           $ref: "#/definitions/Portfolio"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
+        400:
+          description: "Bad request"
         404:
-          description: "Portfolio not found / not removed"
+          description: "Portfolio not found / updated"
         500:
           description: "5xx - server errors"
     delete:
@@ -325,9 +397,11 @@ paths:
         type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
+        400:
+          description: "Bad request"
         404:
-          description: "Portfolio not found / not removed"
+          description: "Portfolio not found / removed"
         500:
           description: "5xx - server errors"
           
