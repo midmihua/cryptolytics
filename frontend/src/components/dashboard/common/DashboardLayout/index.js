@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { setActivePage, resetActivePage } from 'redux/reducers/common';
+import { setActivePage, resetActivePage } from 'redux/common/actions';
 import { Redirect } from 'react-router-dom';
 
 import DashboardTopMenu from 'components/dashboard/common//DashboardTopMenu';
@@ -77,7 +77,11 @@ DashboardLayout.propTypes = {
   meError: PropTypes.object,
   setActivePage: PropTypes.func.isRequired,
   resetActivePage: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.string,
+  ]).isRequired,
   pageTitle: PropTypes.string,
   activePage: PropTypes.string,
 };

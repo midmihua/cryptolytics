@@ -7,7 +7,7 @@ const PositionsPage = () => (
     pageTitle="Positions"
     activePage="positions"
   >
-    PositionsPage!
+    PositionsPage
   </DashboardLayout>
 );
 

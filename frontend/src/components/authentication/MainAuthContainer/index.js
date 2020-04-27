@@ -2,12 +2,10 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import {
-  fetchMe,
-  logoutComplete,
-} from 'redux/reducers/users';
+import { fetchMe, logoutComplete } from 'redux/users/actions';
 
 import { getCookie, setCookies, removeCookie } from 'utils/cookies';
+
 
 class MainAuthContainer extends Component {
   static propTypes = {

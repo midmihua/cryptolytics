@@ -8,7 +8,10 @@ import LoginPage from 'pages/authentication/LoginPage';
 import SignupPage from 'pages/authentication/SignupPage';
 
 import HomePage from 'pages/dashboard/HomePage';
+
 import PortfoliosPage from 'pages/dashboard/portfolios/PortfoliosPage';
+import SinglePortfolioPage from 'pages/dashboard/portfolios/SinglePortfolioPage';
+
 import PositionsPage from 'pages/dashboard/positions/PositionsPage';
 
 export default (
@@ -22,7 +25,14 @@ export default (
 
     {/* Dashboard */}
     <Route path="/dashboard/home" name="home" component={HomePage} />
+
+    <Route
+      path="/dashboard/portfolios/:portfolioId"
+      name="single-portfolio"
+      component={SinglePortfolioPage}
+    />
     <Route path="/dashboard/portfolios" name="portfolios" component={PortfoliosPage} />
+
     <Route path="/dashboard/positions" name="positions" component={PositionsPage} />
 
     {/* 404 Not Found */}

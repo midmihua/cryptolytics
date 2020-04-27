@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { logout } from 'redux/reducers/users';
+import { logout } from 'redux/users/actions';
 
 import { Link } from 'react-router-dom';
 import onClickOutside from 'react-onclickoutside';
