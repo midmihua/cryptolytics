@@ -8,7 +8,7 @@ class SelectField extends Component {
   static propTypes = {
     input: PropTypes.object.isRequired,
     meta: PropTypes.object.isRequired,
-    options: PropTypes.object.isRequired,
+    options: PropTypes.arrayOf(PropTypes.object),
     placeholder: PropTypes.string,
     firstSelected: PropTypes.bool,
     label: PropTypes.string,
@@ -24,9 +24,10 @@ class SelectField extends Component {
     loading: false,
     disabled: false,
     search: false,
+    options: [],
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     if (
       this.props.firstSelected &&
       (this.props.options && this.props.options.length > 0) &&

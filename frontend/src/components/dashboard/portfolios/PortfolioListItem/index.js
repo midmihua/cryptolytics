@@ -12,7 +12,6 @@ const PortfolioListItem = ({ item }) => (
     className="portfolio-list-item__component"
   >
     <div className="title">{item.name}</div>
-    <div className="descriptio">{item.description}</div>
   </Link>
 );
 

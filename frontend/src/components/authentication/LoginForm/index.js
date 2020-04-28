@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { retrieveToken, clearLoginError } from 'redux/users/actions';
 
-import { Link } from 'react-router-dom';
-
 import { Field, reduxForm } from 'redux-form';
-import { Form, Message, Divider } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import TextField from 'components/redux-form-adapters/TextField';
 import Button from 'components/elements/buttons/Button';
 
@@ -76,9 +74,6 @@ const LoginForm = props => {
           content="Login Error"
         />
       }
-
-      <Divider section />
-      <Link to="/signup">Signup</Link>
     </div>
   );
 };

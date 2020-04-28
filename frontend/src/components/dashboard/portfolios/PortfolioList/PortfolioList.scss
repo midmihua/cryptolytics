@@ -1,0 +1,14 @@
+@import 'shared/variables.scss';
+
+.portfolio-list__component {
+  @include display-flex;
+  @include flex-wrap(wrap);
+
+  .portfolio-list-item__component {
+    margin-right: 25px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

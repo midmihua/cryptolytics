@@ -1,0 +1,15 @@
+@import 'shared/variables.scss';
+
+.action-bar__component {
+  padding: 25px 0;
+  @include display-flex;
+  @include flex-wrap(wrap);
+
+  .action-bar-item__component {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

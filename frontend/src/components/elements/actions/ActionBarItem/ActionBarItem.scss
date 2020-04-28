@@ -1,0 +1,21 @@
+@import 'shared/variables.scss';
+
+.action-bar-item__component {
+  width: 35px;
+  min-width: 35px;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+  @include transition(all, .1s, ease-in-out);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &.add {
+    background-image: url('./icons/add/ic_add.svg');
+
+    &:hover {
+      background-image: url('./icons/add/ic_add_hover.svg');
+    }
+  }
+}

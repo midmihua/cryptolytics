@@ -11,6 +11,8 @@ import { Loader } from 'semantic-ui-react';
 
 import PortfolioListItem from 'components/dashboard/portfolios/PortfolioListItem';
 
+import './PortfolioList.css';
+
 
 const PortfolioList = props => {
   const {

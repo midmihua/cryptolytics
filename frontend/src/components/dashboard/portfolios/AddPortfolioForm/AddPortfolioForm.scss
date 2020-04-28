@@ -1,0 +1,14 @@
+@import 'shared/variables.scss';
+
+.add-portfolio-form__component {
+  .buttons-block {
+    margin-top: 40px;
+    @include display-flex;
+    @include jc-center;
+
+    .button__component {
+      width: 150px;
+      margin: 0 5px;
+    }
+  }
+}

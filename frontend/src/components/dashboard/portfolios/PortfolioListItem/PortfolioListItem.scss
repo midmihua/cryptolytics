@@ -3,13 +3,19 @@
 .portfolio-list-item__component {
   width: 300px;
   margin-bottom: 20px;
-  padding: 20px;
+  padding: 30px;
   display: block;
   @include border-radius(4px);
   background: $soft-dark;
+  color: $primary-text;
+  @include transition(all, .1s, ease-in-out);
+
+  &:hover {
+    color: $orange;
+  }
 
   .title {
     font-size: 20px;
-    color: $primary-text;
+    text-align: center;
   }
 }
