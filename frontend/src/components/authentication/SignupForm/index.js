@@ -4,10 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { registrateUser, clearRegistrateUser } from 'redux/users/actions';
 
-import { Link } from 'react-router-dom';
-
 import { Field, reduxForm } from 'redux-form';
-import { Form, Message, Divider } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import TextField from 'components/redux-form-adapters/TextField';
 import Button from 'components/elements/buttons/Button';
 
@@ -109,9 +107,6 @@ const SignupForm = props => {
           content="Registrate User Error!"
         />
       }
-
-      <Divider section />
-      <Link to="/login">Login</Link>
     </div>
   );
 };

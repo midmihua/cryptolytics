@@ -1,0 +1,86 @@
+@import 'shared/variables.scss';
+
+// Input
+.ui.form {
+  .field {
+    width: 100%;
+    margin-bottom: 25px;
+    position: relative;
+
+    & > label {
+      margin-bottom: 10px;
+      font-family: $primary-font;
+      color: $secondary-text;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .ui {
+      &.input {
+        input {
+          width: 100%;
+          height: 50px;
+          // padding-left: 30px!important;
+          // padding-right: 30px!important;
+          @include border-radius(8px);
+          border: 1px solid $secondary-text;
+          background: inherit;
+        }
+      }
+    }
+  }
+}
+
+// Dropdown
+.ui.selection.dropdown {
+  width: 100%;
+  height: 50px;
+  border: 1px solid $secondary-text;
+  @include border-radius(8px);
+  background: inherit;
+
+  >.text {
+    width: 100%;
+    line-height: 20px;
+    margin-top: 3px;
+    padding-right: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $primary-text;
+  }
+
+  >.icon {
+    padding-top: 17px!important;
+  }
+
+  .menu {
+    width: calc(100% + 2px);
+    min-width: calc(100% + 2px);
+    margin-top: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $primary-text;
+    border: 1px solid $secondary-text;
+    background: inherit;
+    @include border-radius-detailed(0, 0, 8px, 8px);
+
+    .item {
+      border-top: none;
+
+      .text {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $primary-text;
+      }
+    }
+
+    .message {
+      color: $primary-text;
+    }
+  }
+}
