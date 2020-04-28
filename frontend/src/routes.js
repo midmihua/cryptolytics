@@ -8,11 +8,11 @@ import LoginPage from 'pages/authentication/LoginPage';
 import SignupPage from 'pages/authentication/SignupPage';
 
 import HomePage from 'pages/dashboard/HomePage';
-
 import PortfoliosPage from 'pages/dashboard/portfolios/PortfoliosPage';
 import SinglePortfolioPage from 'pages/dashboard/portfolios/SinglePortfolioPage';
-
 import PositionsPage from 'pages/dashboard/positions/PositionsPage';
+
+import NotFoundPage from 'pages/errors/NotFoundPage';
 
 export default (
   <Switch>
@@ -36,7 +36,7 @@ export default (
     <Route path="/dashboard/positions" name="positions" component={PositionsPage} />
 
     {/* 404 Not Found */}
-    <Route render={() => <h2>404 page not found!</h2>} />
+    <Route name="not-found" component={NotFoundPage} />
 
   </Switch>
 );

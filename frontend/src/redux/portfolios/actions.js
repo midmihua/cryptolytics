@@ -15,6 +15,7 @@ export const fetchPortfolioList = () => baseErrorsHandlerDecorator(
   FETCH_PORTFOLIO_LIST_SUCCESS,
   FETCH_PORTFOLIO_LIST_ERROR,
   () => restapi.get('/portfolios'),
+  false,
 );
 
 export const clearFetchPortfolioList = () => dispatch => {
@@ -27,6 +28,7 @@ export const fetchPortfolioDetails = portfolioId => baseErrorsHandlerDecorator(
   FETCH_PORTFOLIO_DETAILS_SUCCESS,
   FETCH_PORTFOLIO_DETAILS_ERROR,
   () => restapi.get(`/portfolios/${portfolioId}`),
+  false,
 );
 
 export const clearFetchPortfolioDetails = () => dispatch => {

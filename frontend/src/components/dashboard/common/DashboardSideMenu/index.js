@@ -56,6 +56,16 @@ const DashboardSideMenu = ({ activePage }) => {
           <div className="name">Positions</div>
         </Link>
 
+        {/* Analytics */}
+        {/* <Link
+          to="/dashboard/positions"
+          className={`nav-item${activePage === 'positions' ? ' active' : ''}`}
+        >
+          <div className="border-left" />
+          <div className="icon positions" />
+          <div className="name">Analytics</div>
+        </Link> */}
+
       </div>
 
       {/* Hide button */}

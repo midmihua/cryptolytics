@@ -1,9 +1,15 @@
 import React from 'react';
 
-const DashboardFooter = () => (
-  <div className="dashboard-footer__component">
-    <h3>Dashboard Footer</h3>
-  </div>
-);
+import './DashboardFooter.css';
+
+const DashboardFooter = () => {
+  const date = new Date();
+
+  return (
+    <div className="dashboard-footer__component">
+      &copy; {date.getFullYear()} Cryptolytics
+    </div>
+  );
+};
 
 export default DashboardFooter;

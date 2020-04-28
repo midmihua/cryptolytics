@@ -1,0 +1,11 @@
+@import 'shared/variables.scss';
+
+.ui.modal.common-modal__component {
+  padding: 40px;
+  @include border-radius(6px);
+  background: $soft-dark;
+
+  .close.icon {
+    color: $secondary-text;
+  }
+}
