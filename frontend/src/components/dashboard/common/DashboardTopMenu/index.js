@@ -11,14 +11,10 @@ import './DashboardTopMenu.css';
 const DashboardTopMenu = ({ pageTitle }) => (
   <div className="dashboard-top-menu__component">
     <div className="wrapper">
-      <div className="page-header">
-        <div className="page-name">{pageTitle}</div>
-        <DashboardBreadCrumbs />
-      </div>
-
+      <div className="page-name">{pageTitle}</div>
       <MyAccount />
     </div>
-
+    <DashboardBreadCrumbs />
     <div className="bottom-line" />
   </div>
 );

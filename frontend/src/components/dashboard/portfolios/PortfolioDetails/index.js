@@ -9,6 +9,8 @@ import {
 
 import { Loader } from 'semantic-ui-react';
 
+import CommonModal from 'components/common/CommonModal';
+
 
 const PortfolioDetails = props => {
   const {

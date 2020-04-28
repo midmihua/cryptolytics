@@ -1,0 +1,34 @@
+@import 'shared/variables.scss';
+
+.not-found__component {
+  width: 100%;
+  height: 100vh;
+
+  @include display-flex;
+  @include align-items-center;
+  @include jc-center;
+
+  .wrapper {
+    color: $secondary-text;
+
+    .title {
+      font-size: 180px;
+      margin-bottom: 90px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .sub-text {
+      margin-bottom: 40px;
+      font-size: 18px;
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .buttons-block {
+      .button__component {
+        margin: 0 auto;
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@ import {
   RESET_NOT_FOUND,
   SET_ACTIVE_PAGE,
   RESET_ACTIVE_PAGE,
+  SET_BREADCRUMBS,
+  CLEAR_BREADCRUMBS,
 } from 'redux/common/types';
 
 
@@ -21,5 +23,18 @@ export const setActivePage = activePage => dispatch => {
 export const resetActivePage = () => dispatch => {
   dispatch({
     type: RESET_ACTIVE_PAGE,
+  });
+};
+
+export const setBreadcrumbs = breadcrumbs => dispatch => {
+  dispatch({
+    type: SET_BREADCRUMBS,
+    payload: breadcrumbs,
+  });
+};
+
+export const clearBreadcrumbs = () => dispatch => {
+  dispatch({
+    type: CLEAR_BREADCRUMBS,
   });
 };

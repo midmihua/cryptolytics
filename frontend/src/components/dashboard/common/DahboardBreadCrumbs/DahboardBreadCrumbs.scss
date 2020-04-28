@@ -1,5 +1,27 @@
 @import 'shared/variables.scss';
 
 .dashboard-breadcrumbs__component {
-  color: $secondary-text;
+  @include display-flex;
+
+  a {
+    color: $secondary-text;
+    @include transition(all, .1s, ease-in-out);
+
+    &:hover {
+      color: $orange;
+
+      span {
+        color: $secondary-text;
+      }
+    }
+
+    &:last-child {
+      font-weight: 500;
+      color: $orange;
+
+      span {
+        display: none;
+      }
+    }
+  }
 }

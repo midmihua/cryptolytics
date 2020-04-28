@@ -4,12 +4,15 @@ import {
   RESET_NOT_FOUND,
   SET_ACTIVE_PAGE,
   RESET_ACTIVE_PAGE,
+  SET_BREADCRUMBS,
+  CLEAR_BREADCRUMBS,
 } from 'redux/common/types';
 
 const initialState = {
   siteLoading: false,
   notFound: false,
   activePage: null,
+  breadcrumbs: null,
 };
 
 export default (state = initialState, action) => {
@@ -38,6 +41,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         activePage: null,
+      };
+    case SET_BREADCRUMBS:
+      return {
+        ...state,
+        breadcrumbs: action.payload,
+      };
+    case CLEAR_BREADCRUMBS:
+      return {
+        ...state,
+        breadcrumbs: null,
       };
     default:
       return state;
