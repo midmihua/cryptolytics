@@ -675,7 +675,7 @@
     "Exchange": {
       "type": "object",
       "properties": {
-        "exchange": {
+        "name": {
           "type": "string"
         },
         "url": {
@@ -700,10 +700,10 @@
     "Portfolio": {
       "type": "object",
       "properties": {
-        "portfolio": {
+        "name": {
           "type": "string"
         },
-        "exchange": {
+        "exchangeId": {
           "type": "string"
         },
         "description": {

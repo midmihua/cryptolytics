@@ -446,7 +446,7 @@ definitions:
   Exchange:
     type: "object"
     properties:
-      exchange:
+      name:
         type: "string"
       url:
         type: "string"
@@ -462,9 +462,9 @@ definitions:
   Portfolio:
     type: "object"
     properties:
-      portfolio:
+      name:
         type: "string"
-      exchange:
+      exchangeId:
         type: "string"
       description:
         type: "string"

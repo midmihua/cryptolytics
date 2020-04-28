@@ -1,13 +1,21 @@
-module.exports.errorHandling = (error, req, res, next) => {
+module.exports.errorHandling = (err, req, res, next) => {
 
-  let status = error.statusCode ? error.statusCode : 500;
+  let error = err.message;
+  let status = err.statusCode ? err.statusCode : 500;
 
-  if (error.name === 'JsonWebTokenError' || error.name === 'CastError')
-    status = 400;
+  switch(err.name) {
+    case 'JsonWebTokenError' :
+      status = 400;
+      break;
+    case 'CastError':
+      status = 404;
+      error = 'Incorrect objectId provided';
+      break;    
+  }
 
   const message = {
-    message: error.message,
-    errors: Array.isArray(error.validationErrors) &&
+    error,
+    description: Array.isArray(error.validationErrors) &&
       error.validationErrors.length > 0 ?
       error.validationErrors : undefined
   };
