@@ -16,7 +16,6 @@ const getPortfolio = async (req, res, next) => {
 
     return res.status(200).json(collection);
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
@@ -51,7 +50,6 @@ const postPortfolio = async (req, res, next) => {
     });
 
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
@@ -68,31 +66,24 @@ const putPortfolio = async (req, res, next) => {
     if (!id)
       throw new ValidationError(notify.enterValidField('portfolio._id'), 404);
 
-    const portfolioToUpdate = await Portfolio.findById(id);
-    if (!portfolioToUpdate)
+    const portfolio = await Portfolio.findById(id);
+    if (!portfolio)
       throw new ValidationError(notify.entityNotFound('Portfolio'), 404);
 
-    const { name, exchangeId, description } = req.body;
-    portfolioToUpdate.name = name;
-    portfolioToUpdate.exchangeId = exchangeId;
-    portfolioToUpdate.description = description;
-
-    const result = portfolioToUpdate.save();
-    if (!result) {
-      const error = new ValidationError(notify.entityNotUpdated('Portfolio'), 404);
-      return next(error);
-    }
+    const result = await Portfolio.findByIdAndUpdate(id, req.body, {new: true});
+    if (!result)
+      throw new ValidationError(notify.entityNotUpdated('Portfolio'), 404);
 
     return res.status(200).json({
       message: notify.entityUpdated('Portfolio'),
-      result: portfolioToUpdate
+      result
     });
 
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
+
 const deletePortfolio = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -112,7 +103,6 @@ const deletePortfolio = async (req, res, next) => {
       result
     });
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };

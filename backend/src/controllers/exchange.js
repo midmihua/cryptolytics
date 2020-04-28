@@ -14,7 +14,6 @@ const getExchange = async (req, res, next) => {
 
     return res.status(200).json(collection);
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
@@ -37,7 +36,6 @@ const postExchange = async (req, res, next) => {
     });
 
     const result = await newExchange.save();
-
     if (!result) {
       const error = new ValidationError(notify.entityNotCreated('Exchange'), 404);
       return next(error);
@@ -49,7 +47,6 @@ const postExchange = async (req, res, next) => {
     });
 
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
@@ -66,28 +63,20 @@ const putExchange = async (req, res, next) => {
     if (!id)
       throw new ValidationError(notify.enterValidField('exchange._id'), 404);
 
-    const exchangeToUpdate = await Exchange.findById(id);
-    if (!exchangeToUpdate)
+    const exchange = await Exchange.findById(id);
+    if (!exchange)
       throw new ValidationError(notify.entityNotFound('Exchange'), 404);
-
-    const { name, url, description } = req.body;
-    exchangeToUpdate.name = name;
-    exchangeToUpdate.url = url;
-    exchangeToUpdate.description = description;
-
-    const result = exchangeToUpdate.save();
-    if (!result) {
-      const error = new ValidationError(notify.entityNotUpdated('Exchange'), 404);
-      return next(error);
-    }
+    
+    const result = await Exchange.findByIdAndUpdate(id, req.body, {new: true});
+    if (!result)
+      throw new ValidationError(notify.entityNotUpdated('Exchange'), 404);
 
     return res.status(200).json({
       message: notify.entityUpdated('Exchange'),
-      result: exchangeToUpdate
+      result
     });
 
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
@@ -111,7 +100,6 @@ const deleteExchange = async (req, res, next) => {
       result
     });
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
