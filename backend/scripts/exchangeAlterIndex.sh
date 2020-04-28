@@ -11,6 +11,7 @@ echo "Drop obsolete index in exchanges collection"
 
 sudo docker exec -it $CONTAINER mongo -u $USER -p $PASSWORD cryptolytics --eval '
 db.exchanges.dropIndex("exchange_1");
+db.exchanges.createIndex({"name": 1}, {unique: true});
 db.exchanges.getIndexes();
 '
 

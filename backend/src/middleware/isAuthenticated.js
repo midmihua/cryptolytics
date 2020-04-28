@@ -26,7 +26,6 @@ module.exports.isAuthenticated = (req, res, next) => {
     return next();
 
   } catch (error) {
-    error.statusCode = error.statusCode ? error.statusCode : 500;
     return next(error);
   }
 };
